@@ -122,11 +122,19 @@ textarea:focus {
 ========================= */
 
 .container {
-    max-width: calc(100% - (2 * var(--container-margin)));
-    margin: 0 auto;
-    padding: 0 var(--container-margin);
+   width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 16px;
+    padding-left: 16px;
 }
-
+@media (min-width: 1024px) {
+    .container {
+        max-width: calc(100% - (2 * var(--container-margin)));
+        padding-right: var(--container-margin);
+        padding-left: var(--container-margin);
+    }
+}
 /* =========================
    9. FLEX HELPERS (RTL FRIENDLY)
 ========================= */

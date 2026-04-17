@@ -1,1 +1,55 @@
-<p>nav-bar works!</p>
+<nav class="w-full bg-white relative">
+
+  <div class="container mx-auto px-6 flex items-center justify-between h-[72px]">
+
+    <!-- Logo -->
+    <img src="/images/fixly_AI.svg" class="h-9 w-28 flex-shrink-0" />
+
+    <!-- Desktop Links ONLY -->
+    <ul class="hidden lg:flex items-center gap-8 whitespace-nowrap text-[15px] font-medium text-[var(--primary)]">
+      <li class="hover:text-[var(--secondary)] cursor-pointer">الخدمات</li>
+      <li class="hover:text-[var(--secondary)] cursor-pointer">كيف يعمل</li>
+      <li class="hover:text-[var(--secondary)] cursor-pointer">الفنيين</li>
+      <li class="hover:text-[var(--secondary)] cursor-pointer">آراء العملاء</li>
+      <li class="hover:text-[var(--secondary)] cursor-pointer">تواصل معنا</li>
+    </ul>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-3 flex-shrink-0">
+
+      <!-- Login (desktop only) -->
+      <button class="hidden lg:flex items-center gap-2 bg-[var(--secondary)] text-white px-5 py-2 rounded-full hover:bg-[var(--hover)] transition whitespace-nowrap">
+        <span>تسجيل الدخول</span>
+        <span>←</span>
+      </button>
+
+      <!-- Hamburger (tablet + mobile) -->
+      <button class="lg:hidden text-2xl" (click)="isOpen.set(!isOpen())">
+        ☰
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Dropdown Menu (FULL WIDTH - independent) -->
+  @if (isOpen()) {
+    <div class="absolute top-[72px] left-0 w-full bg-white border-t border-gray-100 shadow-md lg:hidden">
+
+      <div class="px-6 py-4 space-y-4 text-right text-[var(--primary)]">
+
+        <div class="py-2 border-b">الخدمات</div>
+        <div class="py-2 border-b">كيف يعمل</div>
+        <div class="py-2 border-b">الفنيين</div>
+        <div class="py-2 border-b">آراء العملاء</div>
+        <div class="py-2">تواصل معنا</div>
+
+        <button class="w-full mt-3 bg-[var(--secondary)] text-white px-5 py-2 rounded-full">
+          تسجيل الدخول ←
+        </button>
+
+      </div>
+
+    </div>
+  }
+
+</nav>

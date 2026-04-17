@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './nav-bar.css',
 })
 export class NavBar {
-
+isOpen = signal(false);
 }
