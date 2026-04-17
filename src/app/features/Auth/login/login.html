@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-50">
+
+    <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+
+        <div class="text-right mb-6">
+            <h1 class="mb-2">أهلاً بعودتك 👋</h1>
+            <p class="text-sm text-gray-500">سجّل دخولك وكمّل رحلتك</p>
+        </div>
+
+        <form class="space-y-4">
+
+            <div class="relative">
+                <input type="email" placeholder="البريد الإلكتروني"
+                    class="pr-10 focus:ring-2 focus:ring-[var(--primary)]" />
+                <span class="absolute right-3 top-3 text-gray-400">📧</span>
+            </div>
+
+            <div class="relative">
+                <input type="password" placeholder="كلمة المرور"
+                    class="pr-10 focus:ring-2 focus:ring-[var(--primary)]" />
+                <span class="absolute right-3 top-3 text-gray-400">🔒</span>
+            </div>
+
+            <div class="flex justify-between text-sm text-gray-500">
+                <span class="cursor-pointer hover:text-[var(--primary)]">
+                    نسيت كلمة المرور؟
+                </span>
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" />
+                    تذكرني
+                </label>
+            </div>
+
+            <button class="btn-primary w-full shadow-md">
+                تسجيل الدخول
+            </button>
+
+        </form>
+
+        <div class="flex items-center gap-3 my-6">
+            <div class="flex-1 h-px bg-gray-200"></div>
+            <span class="text-sm text-gray-400">أو</span>
+            <div class="flex-1 h-px bg-gray-200"></div>
+        </div>
+
+        <p class="text-sm text-center">
+            معندكش حساب؟
+            <span class="text-[var(--secondary)] cursor-pointer hover:underline">
+                سجل الآن
+            </span>
+        </p>
+
+    </div>
+
+</div>

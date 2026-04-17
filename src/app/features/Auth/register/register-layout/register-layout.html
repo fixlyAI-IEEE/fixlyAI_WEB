@@ -1,0 +1,25 @@
+<div class="min-h-screen flex overflow-hidden">
+
+  <div class="w-1/2 relative">
+    <img
+      src="public/images/interface.jpg"
+      alt="fixly"
+      class="w-full h-full object-cover absolute inset-0"
+    >
+    <button
+      routerLink="/auth/logi"
+      class="absolute top-6 left-6 z-10 w-10 h-10 bg-[#2BD17C] rounded-full flex items-center justify-center hover:bg-[#26BF72] transition-colors"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="w-1/2 flex items-center justify-center px-16 py-12 bg-white">
+    <div class="w-full max-w-md">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
