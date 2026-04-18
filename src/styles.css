@@ -1,16 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 /* =========================
-   1. FONT IMPORT
-========================= */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
-
-/* =========================
-   2. ROOT DESIGN SYSTEM
+   ROOT DESIGN SYSTEM
 ========================= */
 :root {
     --primary: #0E3B3F;
@@ -18,15 +13,13 @@
     --hover: #26BF72;
     --text: #8FA5A3;
     --background: #FFFFFF;
+    --warning: #F59E0B;
 
-    /* Layout System */
-    --container-margin: 80px;
-    --grid-columns: 12;
-    --grid-gutter: 20px;
+    --radius: 12px;
 }
 
 /* =========================
-   3. GLOBAL RESET
+   RESET
 ========================= */
 * {
     margin: 0;
@@ -35,49 +28,45 @@
 }
 
 /* =========================
-   4. BODY STYLES
+   BODY
 ========================= */
 body {
     font-family: 'Tajawal', sans-serif;
     direction: rtl;
     background-color: var(--background);
     color: var(--text);
+    -webkit-font-smoothing: antialiased;
 }
 
 /* =========================
-   5. TYPOGRAPHY SYSTEM
+   TYPOGRAPHY (Figma style)
 ========================= */
-
-/* Main Heading */
 h1 {
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 100%;
+    font-size: 40px;
+    font-weight: 800;
     color: var(--primary);
-    text-align: right;
+    line-height: 1.2;
 }
 
-/* Paragraph */
 p {
     font-size: 16px;
-    font-weight: 400;
     color: var(--text);
     line-height: 1.6;
-    text-align: right;
 }
 
 /* =========================
-   6. BUTTON SYSTEM
+   BUTTONS
 ========================= */
-
 .btn-primary {
     background-color: var(--primary);
     color: white;
-    padding: 12px 20px;
-    border-radius: 12px;
+    padding: 14px 20px;
+    border-radius: var(--radius);
     border: none;
     cursor: pointer;
     transition: 0.3s;
+    width: 100%;
+    font-weight: 700;
 }
 
 .btn-primary:hover {
@@ -87,73 +76,75 @@ p {
 .btn-secondary {
     background-color: var(--secondary);
     color: white;
-    padding: 12px 20px;
-    border-radius: 12px;
+    padding: 14px 20px;
+    border-radius: var(--radius);
     border: none;
     cursor: pointer;
     transition: 0.3s;
-}
-
-.btn-secondary:hover {
-    background-color: var(--hover);
+    width: 100%;
+    font-weight: 700;
 }
 
 /* =========================
-   7. INPUT SYSTEM
+   INPUTS 
 ========================= */
-
 input,
 textarea {
     width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #E5E5E5;
-    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid transparent;
+    border-radius: 50px;
     outline: none;
+    box-shadow: none;
+    background-color: white;
     font-family: 'Tajawal', sans-serif;
+    transition: 0.2s;
 }
 
 input:focus,
 textarea:focus {
     border-color: var(--primary);
+    outline: none;
+    box-shadow: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-text-fill-color: #000 !important;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 /* =========================
-   8. CONTAINER SYSTEM (12 GRID BASE)
+   CONTAINER SYSTEM
 ========================= */
-
 .container {
-    max-width: calc(100% - (2 * var(--container-margin)));
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--container-margin);
+    padding: 0 24px;
 }
 
 /* =========================
-   9. FLEX HELPERS (RTL FRIENDLY)
+   CARD
 ========================= */
-
-.flex {
-    display: flex;
-}
-
-.justify-between {
-    justify-content: space-between;
-}
-
-.items-center {
-    align-items: center;
-}
-
-.gap-20 {
-    gap: 20px;
-}
-
-/* =========================
-   10. CARDS
-========================= */
-
 .card {
     background: white;
     border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   SWEET ALERT
+========================= */
+.swal2-popup {
+    font-family: 'Tajawal', sans-serif !important;
+    border-radius: 18px !important;
+}
+
+.swal2-confirm {
+    background-color: var(--primary) !important;
+    border-radius: 10px !important;
 }

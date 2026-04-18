@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Auth } from '../Auth/services/auth';
 
 @Component({
   selector: 'app-landing',
@@ -8,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class Landing {
 
+  constructor(private auth: Auth) {}
+
+  logout() {
+    this.auth.logout();
+  }
 }

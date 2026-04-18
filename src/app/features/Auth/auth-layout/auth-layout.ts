@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from "@angular/router";
+import { Router, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-auth-layout',
@@ -8,5 +8,8 @@ import { RouterOutlet } from "@angular/router";
   styleUrl: './auth-layout.css',
 })
 export class AuthLayout {
-
+constructor(private router: Router) { }
+  back() {
+    this.router.navigate(['/landing']);
+  }
 }
