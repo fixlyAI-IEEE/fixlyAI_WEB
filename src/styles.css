@@ -1,13 +1,14 @@
+/* =========================
+   1. FONT IMPORT
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-/* =========================
-   1. FONT IMPORT
-========================= */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+
 
 /* =========================
    2. ROOT DESIGN SYSTEM

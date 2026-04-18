@@ -1,0 +1,44 @@
+<section class="py-19 bg-white">
+  <div class="container">
+
+  
+    <div class="text-center mb-12">
+      <h2 class="text-[40px] font-extrabold text-[var(--secondary)] mb-3">فنيين موثوقين بانتظارك</h2>
+      <p class="text-[16px] text-[var(--text)]">نخبة من المحترفين المعتمدين بأعلى التقييمات</p>
+    </div>
+
+   
+    <div class="grid grid-cols-4 gap-5">
+      @for (worker of workers; track worker.id) {
+        <div class="relative rounded-2xl overflow-hidden h-[280px] cursor-pointer group">
+
+         
+          <img
+            [src]="worker.image"
+            [alt]="worker.name"
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+
+         
+          <div class="absolute top-3 left-3 flex items-center gap-1 bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full">
+            <span class="text-yellow-400 text-[14px]">★</span>
+            <span class="text-white text-[13px] font-bold">{{ worker.rating }}</span>
+          </div>
+
+        <div class="absolute bottom-0 right-0 left-0 p-4 text-right">
+             <h3 class="text-white font-bold text-[16px] mb-1">{{ worker.name }}</h3>
+            <p class="text-white/80 text-[13px] mb-2">{{ worker.specialty }}</p>
+             <div class="flex items-center justify-end gap-1">
+              <span class="text-white/70 text-[12px]">{{ worker.location }}</span>
+              <span class="material-symbols-outlined text-white/70 text-[14px]">location_on</span>
+            </div>
+          </div>
+
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

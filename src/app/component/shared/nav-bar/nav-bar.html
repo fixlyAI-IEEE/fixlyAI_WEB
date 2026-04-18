@@ -1,4 +1,6 @@
-<nav class="w-full bg-white relative">
+<nav [class]="isScrolled() ?
+  'w-full fixed top-0 left-0 right-0 z-50 bg-white shadow-sm transition-all' :
+  'w-full fixed top-0 left-0 right-0 z-50 bg-transparent transition-all'">
 
   <div class="container mx-auto px-6 flex items-center justify-between h-[72px]">
 

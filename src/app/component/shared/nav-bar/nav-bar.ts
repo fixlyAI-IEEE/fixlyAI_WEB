@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,4 +8,10 @@ import { Component, signal } from '@angular/core';
 })
 export class NavBar {
 isOpen = signal(false);
+  isScrolled = signal(false);
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.isScrolled.set(window.scrollY > 50);
+}
 }

@@ -1,0 +1,31 @@
+.card-with-notch {
+  position: relative;
+  background: white;
+  border-radius: 24px;
+}
+
+
+.card-with-notch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  background: #f0fdf4;
+  border-bottom-right-radius: 50px;
+  z-index: 1;
+}
+
+
+.card-with-notch::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 68px;
+  height: 68px;
+  background: #f0fdf4;
+  border-bottom-right-radius: 50px;
+  z-index: 2;
+}

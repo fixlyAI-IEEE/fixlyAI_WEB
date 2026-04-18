@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import { NavBar } from '../../component/shared/nav-bar/nav-bar';
 import { HeroSection } from './hero-section/hero-section';
+import { ServicesSectionComponent } from "./services-section/services-section.component";
+import { HowItWorksComponent } from "./how-it-works/how-it-works.component";
+import { WorkersSectionComponent } from "./workers-section/workers-section.component";
+import { ReviewsSectionComponent } from "./reviews-section/reviews-section.component";
+import { ContactUsComponent } from "./Contact-us/Contact-us.component";
 
 @Component({
   selector: 'app-landing',
-  standalone: true, 
-  imports: [NavBar, HeroSection],
+  standalone: true,
+  imports: [NavBar, HeroSection, ServicesSectionComponent, HowItWorksComponent, WorkersSectionComponent, ReviewsSectionComponent, ContactUsComponent],
   templateUrl: './landing.html',
   styleUrl: './landing.css'
 })
