@@ -1,1 +1,23 @@
-<p>reusable-card works!</p>
+<div class="relative pt-6 pl-6">
+
+  <div class="absolute top-1 left-1 z-10 w-[52px] h-[52px] flex items-center justify-center">
+    <span class="material-symbols-outlined text-[28px] text-[var(--secondary)]">
+      {{ service.icon }}
+    </span>
+  </div>
+
+  <div class="card-with-notch shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition cursor-pointer overflow-hidden">
+    <div class="px-5 pt-5 pb-3 text-right">
+      <span class="text-[var(--primary)] font-bold text-[18px]">{{ service.name }}</span>
+    </div>
+    <div class="relative mx-3 mb-3 rounded-2xl overflow-hidden h-[200px]">
+      <img [src]="service.image" [alt]="service.name" class="w-full h-full object-cover" />
+
+  
+      <button class="absolute bottom-3 right-3 bg-[var(--secondary)] hover:bg-[var(--hover)] text-white text-[13px] font-bold px-5 py-2 rounded-full flex items-center gap-2 transition">
+        اطلب الخدمة
+        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+</div>

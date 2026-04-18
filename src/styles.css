@@ -36,6 +36,10 @@ body {
     background-color: var(--background);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
+    
+}
+.pad-80{
+    padding: 80px;
 }
 
 /* =========================
@@ -121,11 +125,19 @@ textarea:-webkit-autofill {
    CONTAINER SYSTEM
 ========================= */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
+   width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 16px;
+    padding-left: 16px;
 }
-
+@media (min-width: 1024px) {
+    .container {
+        max-width: calc(100% - (2 * var(--container-margin)));
+        padding-right: var(--container-margin);
+        padding-left: var(--container-margin);
+    }
+}
 /* =========================
    CARD
 ========================= */
@@ -148,3 +160,4 @@ textarea:-webkit-autofill {
     background-color: var(--primary) !important;
     border-radius: 10px !important;
 }
+
