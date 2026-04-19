@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Service } from '../../../core/models/model';
 
 @Component({
   selector: 'app-reusable-card',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './reusable-card.css',
 })
 export class ReusableCard {
+  @Input() service!: Service;
+  isHovered: boolean = false;
 
 }

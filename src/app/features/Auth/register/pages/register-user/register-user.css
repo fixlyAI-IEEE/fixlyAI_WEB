@@ -1,0 +1,43 @@
+.toggle-btn {
+  color: #8FA5A3;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-btn.active {
+  background-color: var(--secondary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(43, 209, 124, 0.35);
+}
+
+.toggle-btn:not(.active):hover {
+  color: var(--primary);
+}
+
+.select-field:focus {
+    border-color: var(--primary) !important;
+}
+
+.select-field:blur {
+    border-color: #E5E5E5 !important;
+
+}
+
+.location-btn {
+    background-color: #f0fdf4;
+    color: var(--secondary);
+    border: 1.5px solid #d1fae5;
+    font-family: 'Tajawal', sans-serif;
+    min-width: 130px;
+    justify-content: center;
+}
+
+.location-btn:hover:not(:disabled) {
+    background-color: #dcfce7;
+}
+
+.location-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
