@@ -15,14 +15,14 @@ export class ServicesSectionComponent {
   currentPage = 0;
 
   services: Service[] = [
-    { id: 1, name: 'السباكة',  image: '/images/services/plumbing.jpg',  icon: 'plumbing' },
-  { id: 2, name: 'الكهرباء', image: '/images/services/electric.jpg',  icon: 'electrical_services' },
-  { id: 3, name: 'التكييف',  image: '/images/services/ac.jpg',        icon: 'ac_unit' },
-  { id: 4, name: 'النجارة',  image: '/images/services/carpentry.jpg', icon: 'carpenter' },
-  { id: 5, name: 'الدهانات', image: '/images/services/painting.jpg',  icon: 'format_paint' },
-  { id: 6, name: 'التنظيف',  image: '/images/services/cleaning.jpg',  icon: 'cleaning_services' },
-  { id: 7, name: 'الحدادة',  image: '/images/services/welding.jpg',   icon: 'construction' },
-  { id: 8, name: 'البلاط',   image: '/images/services/tiling.jpg',    icon: 'layers' },
+    { id: 1, name: 'السباكة',  image: '/images/اعمال سباكة وصرف صحي دبي.jpg',  icon: 'plumbing' },
+    { id: 2, name: 'الكهرباء', image: '/images/Professional_Electrical_Services_You_Can_Trust_–_ARA_M&E.jpg',  icon: 'electrical_services' },
+    { id: 3, name: 'التكييف',  image: '/images/Heating Ventilation and Air Conditioning.jpg',        icon: 'ac_unit' },
+    { id: 4, name: 'النجارة',  image: '/images/carpenter.jpg', icon: 'carpenter' },
+    { id: 5, name: 'الدهانات', image: '',  icon: 'format_paint' },
+    { id: 6, name: 'التنظيف',  image: '/images/worker.jpg',  icon: 'cleaning_services' },
+    { id: 7, name: 'الحدادة',  image: '',   icon: 'construction' },
+    { id: 8, name: 'البلاط',   image: '',    icon: 'layers' },
   ];
 
   get totalPages(): number {

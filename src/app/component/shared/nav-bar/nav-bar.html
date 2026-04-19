@@ -4,10 +4,8 @@
 
   <div class="container mx-auto px-6 flex items-center justify-between h-[72px]">
 
-    <!-- Logo -->
     <img src="/images/fixly_AI.svg" class="h-9 w-28 flex-shrink-0" />
 
-    <!-- Desktop Links ONLY -->
     <ul class="hidden lg:flex items-center gap-8 whitespace-nowrap text-[15px] font-medium text-[var(--primary)]">
       <li class="hover:text-[var(--secondary)] cursor-pointer">الخدمات</li>
       <li class="hover:text-[var(--secondary)] cursor-pointer">كيف يعمل</li>
@@ -16,10 +14,8 @@
       <li class="hover:text-[var(--secondary)] cursor-pointer">تواصل معنا</li>
     </ul>
 
-    <!-- Actions -->
     <div class="flex items-center gap-3 flex-shrink-0">
 
-      <!-- Login (desktop only) -->
       <button [routerLink]="['/auth/login']"
         class="hidden lg:flex items-center gap-2 bg-[var(--secondary)] text-white px-5 py-2 rounded-full hover:bg-[var(--hover)] transition whitespace-nowrap">
         <span>تسجيل الدخول</span>
@@ -63,7 +59,13 @@
       <div class="py-2">تواصل معنا</div>
 
       <button class="w-full mt-3 bg-[var(--secondary)] text-white px-5 py-2 rounded-full">
-        تسجيل الدخول ←
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+          <polyline points="10 17 15 12 10 7" />
+          <line x1="15" y1="12" x2="3" y2="12" />
+        </svg>
+        تسجيل الدخول
       </button>
 
     </div>

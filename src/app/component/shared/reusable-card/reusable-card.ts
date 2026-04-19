@@ -9,5 +9,6 @@ import { Service } from '../../../core/models/model';
 })
 export class ReusableCard {
   @Input() service!: Service;
+  isHovered: boolean = false;
 
 }

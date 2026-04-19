@@ -1,20 +1,20 @@
-<div class="min-h-screen flex rtl bg-white">
+<div class="flex min-h-screen">
 
-  <div class="hidden lg:block lg:w-1/2">
-    <img src="/images/fixly.webp" class="w-full h-screen object-cover" alt="workers" />
+  <div class="hidden lg:block lg:w-1/2 relative">
+    <img src="/images/fixly.webp" class="w-full h-full object-cover" alt="workers" />
+
     <button
       class="absolute top-6 left-6 bg-green-400 hover:bg-green-500 text-white w-10 h-10 flex items-center justify-center rounded-full shadow cursor-pointer"
       [routerLink]="['/landing']">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" style="transform: scaleX(-1.04);">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77
-      a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91
-      a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" style="transform: scaleX(-1.04);">
+        <path
+          d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77 a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91 a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
       </svg>
     </button>
   </div>
 
-  <div class="w-full lg:w-1/2 flex items-center justify-center px-6 lg:px-12">
+  <div class="lg:w-1/2 flex items-center justify-center">
     <div class="w-full max-w-md">
       <router-outlet></router-outlet>
     </div>
