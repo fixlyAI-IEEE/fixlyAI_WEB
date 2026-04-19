@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { RegisterTabs } from '../components/register-tabs/register-tabs';
 
 @Component({
   selector: 'app-register-layout',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,RegisterTabs],
   templateUrl: './register-layout.html',
   styleUrl: './register-layout.css',
 })

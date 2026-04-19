@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-step-indicator',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './step-indicator.css',
 })
 export class StepIndicator {
-
+ @Input() currentStep: number = 1;
 }

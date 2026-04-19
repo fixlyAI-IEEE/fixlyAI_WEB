@@ -1,150 +1,115 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
 import { register_as_workerRequest, RegisterAsWorkerResponse } from '../../../../../core/models/model';
-
+import { FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
+import { StepIndicator } from "../../components/step-indicator/step-indicator";
+import { Personal } from "./steps/personal/personal";
+import { Business } from "./steps/business/business";
 @Component({
   selector: 'app-register-tech',
-  imports: [],
+  imports: [StepIndicator, Personal, Business],
   templateUrl: './register-tech.html',
   styleUrl: './register-tech.css',
 })
-export class RegisterTech {
+export class RegisterTech implements OnInit {
+
   currentStep = 1;
-  showPass = false;
-  showConfirm = false;
   isLoading = false;
-  previewUrl: string | null = null;
-  isLocating = false;
-  detectedCity = '';
 
-  jobTypes: { id: number; name: string }[] = [];
-
-  readonly days = [
-    { value: 'sat', label: 'السبت' },
-    { value: 'sun', label: 'الأحد' },
-    { value: 'mon', label: 'الاثنين' },
-    { value: 'tue', label: 'الثلاثاء' },
-    { value: 'wed', label: 'الأربعاء' },
-    { value: 'thu', label: 'الخميس' },
-    { value: 'fri', label: 'الجمعة' },
-  ];
-
-  readonly cities = [
-    { value: 'Cairo', label: 'القاهرة' },
-    { value: 'Alexandria', label: 'الإسكندرية' },
-    { value: 'Giza', label: 'الجيزة' },
-    { value: 'Qena', label: 'قنا' },
-    { value: 'Luxor', label: 'الأقصر' },
-    { value: 'Aswan', label: 'أسوان' },
-    { value: 'Sohag', label: 'سوهاج' },
-  ];
-
-  form = {
-    // Step 1
-    name: '',
-    phone: '',
-    password: '',
-    password_confirmation: '',
-    profile_image: null as File | null,
-    // Step 2
-    job_type_id: null as number | null,
-    city: '',
-    areas: '',
-    working_days: [] as string[],
-    hourly_rate: null as number | null,
-    agree: false,
-  };
+  form!: FormGroup;
 
   constructor(
-    private auth: Auth,
-    private router: Router,
-    private jobTypeService: JobTypeService
-  ) {}
+    private fb: FormBuilder,
+    private Auth: Auth,
+    private router: Router
+  ) { }
 
-  ngOnInit() {
-    this.jobTypeService.getAll().subscribe(res => {
-      this.jobTypes = res.data;
-    });
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      phone: ['', [Validators.required, Validators.pattern(/^01[0-2,5]{1}[0-9]{8}$/)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      password_confirmation: ['', Validators.required],
+      profile_picture: [null],
+
+      job_type_id: [null, Validators.required],
+      city: ['', Validators.required],
+      areas: ['', Validators.required],
+      working_days: [[], Validators.required],
+      avg_price: [null, [Validators.required, Validators.min(1)]],
+
+    }, { validators: this.passwordMatchValidator });
   }
 
-  onImageSelect(event: Event) {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (!file) return;
-    this.form.profile_image = file;
-    const reader = new FileReader();
-    reader.onload = () => this.previewUrl = reader.result as string;
-    reader.readAsDataURL(file);
+  passwordMatchValidator(group: AbstractControl) {
+    const pass = group.get('password')?.value;
+    const confirm = group.get('password_confirmation')?.value;
+    return pass === confirm ? null : { mismatch: true };
   }
 
-  toggleDay(day: string) {
-    const idx = this.form.working_days.indexOf(day);
-    idx === -1
-      ? this.form.working_days.push(day)
-      : this.form.working_days.splice(idx, 1);
-  }
+  nextStep(): void {
+    const step1Controls = ['name', 'phone', 'password', 'password_confirmation'];
+    step1Controls.forEach(key => this.form.get(key)?.markAsTouched());
 
-  isDaySelected(day: string): boolean {
-    return this.form.working_days.includes(day);
-  }
+    const step1Valid = step1Controls.every(key => this.form.get(key)?.valid);
+    const noMismatch = !this.form.hasError('mismatch');
 
-  nextStep() {
-    if (!this.form.name || !this.form.phone || !this.form.password) {
-      Swal.fire({ icon: 'warning', title: 'تنبيه', text: 'من فضلك أكمل البيانات المطلوبة' });
-      return;
+    if (step1Valid && noMismatch) {
+      this.currentStep = 2;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    if (this.form.password !== this.form.password_confirmation) {
-      Swal.fire({ icon: 'error', title: 'خطأ', text: 'كلمتا المرور غير متطابقتان' });
-      return;
-    }
-    this.currentStep = 2;
   }
 
-  prevStep() {
-    this.currentStep = 1;
-  }
-
-  submit() {
-    if (!this.form.job_type_id || !this.form.city || !this.form.working_days.length) {
-      Swal.fire({ icon: 'warning', title: 'تنبيه', text: 'من فضلك أكمل بيانات العمل' });
-      return;
-    }
-    if (!this.form.agree) {
-      Swal.fire({ icon: 'warning', title: 'تنبيه', text: 'يرجى الموافقة على الشروط والأحكام' });
+  onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
 
     this.isLoading = true;
 
-    const payload = {
-      name: this.form.name,
-      phone: this.form.phone,
-      password: this.form.password,
-      password_confirmation: this.form.password_confirmation,
-      job_type_id: this.form.job_type_id!,
-      city: this.form.city,
-      areas: this.form.areas,
-      working_days: this.form.working_days,
-      hourly_rate: this.form.hourly_rate ?? undefined,
-    };
+    const formData = new FormData();
+    const v = this.form.value;
 
-    this.auth.registerWorker(payload).subscribe({
-      next: (res:RegisterAsWorkerResponse) => {
+    formData.append('name', v.name);
+    formData.append('phone', v.phone);
+    formData.append('password', v.password);
+    formData.append('password_confirmation', v.password_confirmation);
+    formData.append('job_type_id', v.job_type_id);
+    formData.append('city', v.city);
+    formData.append('areas', v.areas);
+    formData.append('avg_price', v.avg_price);
+    v.working_days.forEach((day: string) => formData.append('working_days[]', day));
+    if (v.profile_picture) {
+      formData.append('profile_picture', v.profile_picture);
+    }
+
+    this.Auth.registerWorker(formData as any).subscribe({
+      next: (res) => {
         this.isLoading = false;
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', JSON.stringify(res.data.user));
         Swal.fire({
           icon: 'success',
-          title: 'تم إنشاء الحساب بنجاح',
-          text: `أهلاً ${res.data.user.name}!`,
-          confirmButtonText: 'حسناً'
-        }).then(() => this.router.navigate(['/']));
+          title: 'تم إنشاء الحساب!',
+          text: res.message,
+          confirmButtonText: 'ابدأ الآن',
+        }).then(() => this.router.navigate(['/landing']));
       },
       error: (err) => {
         this.isLoading = false;
-        Swal.fire({ icon: 'error', title: 'خطأ', text: 'حدث خطأ، حاول مرة أخرى' });
+        Swal.fire({
+          icon: 'error',
+          title: 'حدث خطأ',
+          text: err?.error?.message || 'حاول مرة تانية',
+        });
       }
     });
   }
+
+  get f() { return this.form.controls; }
+  isInvalid(key: string) { return this.f[key].invalid && this.f[key].touched; }
 }
