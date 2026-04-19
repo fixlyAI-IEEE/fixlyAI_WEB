@@ -53,8 +53,8 @@ export interface register_as_workerRequest {
   city: string;
   areas: string;
   working_days: string[];
-  avg_price:number;
-  profile_picture:File;
+  avg_price: number;
+  profile_picture: File;
 
 }
 
@@ -68,22 +68,22 @@ export interface RegisterAsWorkerResponse {
       role: string;
       city: string;
       areas: string;
-      profile_picture: string | null;  
-      is_verified: boolean;            
-      created_at: string;              
+      profile_picture: string | null;
+      is_verified: boolean;
+      created_at: string;
     };
     worker: {
       id: number;
       is_available: boolean | null;
       is_verified: boolean | null;
       rating: number | null;
-      avg_price: number;               
+      avg_price: number;
       working_days: string[];
     };
     token: string;
   };
 }
- 
+
 
 export interface SendOtpRequest {
   phone: string;

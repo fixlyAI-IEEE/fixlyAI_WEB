@@ -11,9 +11,9 @@ import { RegisterTabs } from '../components/register-tabs/register-tabs';
 export class RegisterLayout {
 
   activeTab: 'user' | 'tech' = 'user';
-  currentStep = 1;
+  activeChild: any;
 
-  constructor(private router: Router) {
+  constructor(public router: Router) {
     this.router.events.subscribe(e => {
       if (e instanceof NavigationEnd) {
         this.activeTab = e.url.includes('tech') ? 'tech' : 'user';
@@ -21,27 +21,18 @@ export class RegisterLayout {
     });
   }
 
-
-
   goTo(tab: 'user' | 'tech') {
     this.activeTab = tab;
-    this.currentStep = 1;
     this.router.navigate(['/auth/register', tab]);
   }
 
-  setStep(step: number) {
-    this.currentStep = step;
+  onActivate(component: any) {
+    this.activeChild = component;
   }
 
-activeChild: any;
+  get currentStep(): number {
+    return this.activeChild?.currentStep ?? 1;
+  }
 
-onActivate(component: any) {
-  this.activeChild = component;
 }
 
-get currentStep(): number {
-  return this.activeChild?.currentStep ?? 1;
-}
-
-  
-}

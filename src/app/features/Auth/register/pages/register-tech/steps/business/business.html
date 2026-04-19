@@ -1,1 +1,85 @@
-<p>business works!</p>
+<div class="flex flex-col gap-4">
+
+    <div>
+        <label class="field-label">التخصص</label>
+        <div class="select-wrapper">
+            <select formControlName="job_type_id" [class.input-error]="isInvalid('job_type_id')">
+                <option value="" disabled selected>اختر تخصصك</option>
+                <option *ngFor="let job of jobTypes" [value]="job.id">{{ job.name }}</option>
+            </select>
+            <i class="fas fa-chevron-down select-arrow"></i>
+        </div>
+        <span class="error-msg" *ngIf="isInvalid('job_type_id')">برجاء اختيار التخصص</span>
+    </div>
+
+    <div>
+        <label class="field-label">المحافظة</label>
+        <div class="select-wrapper">
+            <select formControlName="city" [class.input-error]="isInvalid('city')">
+                <option value="" disabled selected>اختر محافظتك</option>
+                <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+            </select>
+            <i class="fas fa-chevron-down select-arrow"></i>
+        </div>
+    </div>
+
+    <div>
+        <label class="field-label">مناطق العمل</label>
+        <div class="select-wrapper">
+            <select formControlName="areas" [class.input-error]="isInvalid('areas')">
+                <option value="" disabled selected>اختر مناطق العمل</option>
+                <option *ngFor="let a of areas" [value]="a">{{ a }}</option>
+            </select>
+            <i class="fas fa-chevron-down select-arrow"></i>
+        </div>
+    </div>
+    <div>
+        <label class="field-label">أيام العمل</label>
+        <div class="flex flex-wrap gap-2 mt-1">
+            <button type="button" *ngFor="let day of daysOptions" class="day-chip"
+                [class.day-chip-active]="isDaySelected(day)" (click)="toggleDay(day)">
+                {{ day }}
+            </button>
+        </div>
+        <span class="error-msg"
+            *ngIf="form.get('working_days')?.touched && form.get('working_days')?.value?.length === 0">
+            اختر يوم عمل واحد على الأقل
+        </span>
+    </div>
+
+    <div>
+        <label class="field-label">متوسط سعر الساعة للخدمة</label>
+        <div class="input-wrapper">
+            <input type="number" formControlName="avg_price" placeholder="ادخل سعر الساعة للخدمة"
+                [class.input-error]="isInvalid('avg_price')">
+            <i class="fas fa-dollar-sign input-icon"></i>
+        </div>
+        <span class="error-msg" *ngIf="isInvalid('avg_price')">السعر مطلوب</span>
+    </div>
+
+    <p class="text-xs text-center" style="color: var(--text)">
+        بإنشاء حساب، أنت توافق على
+        <a href="#" style="color: var(--secondary)">شروط الاستخدام</a>
+        و
+        <a href="#" style="color: var(--secondary)">سياسة الخصوصية</a>
+    </p>
+
+    <button type="submit" class="btn-secondary" [disabled]="isLoading">
+        <span *ngIf="!isLoading">إنشاء حساب</span>
+        <span *ngIf="isLoading">
+            <i class="fas fa-spinner fa-spin ml-2"></i>
+            جاري الإنشاء...
+        </span>
+    </button>
+
+    <button type="button" class="btn-back" (click)="back.emit()">
+        <i class="fas fa-arrow-right ml-1"></i>
+        رجوع
+    </button>
+
+    <p class="text-center text-sm">
+        لديك حساب بالفعل؟
+        <a routerLink="/auth/login" style="color: var(--secondary)" class="font-bold">سجل الدخول</a>
+    </p>
+
+</div>

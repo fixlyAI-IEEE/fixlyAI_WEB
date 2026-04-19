@@ -1,0 +1,118 @@
+.field-label {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--primary);
+    margin-bottom: 6px;
+    text-align: right;
+}
+
+.input-wrapper {
+    position: relative;
+
+    input {
+        padding-left: 44px;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text);
+        font-size: 14px;
+    }
+}
+
+.input-error {
+    border-color: #ef4444 !important;
+}
+
+.error-msg {
+    display: block;
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
+    text-align: right;
+}
+
+.upload-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px dashed var(--secondary);
+    border-radius: var(--radius);
+    background: #f0fdf6;
+}
+
+.select-wrapper {
+    position: relative;
+
+    select {
+        width: 100%;
+        padding: 14px 16px;
+        padding-left: 44px;
+        border: 1px solid transparent;
+        border-radius: 50px;
+        background: white;
+        appearance: none;
+        font-family: 'Tajawal', sans-serif;
+        cursor: pointer;
+        color: var(--text);
+
+        &:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        &.input-error {
+            border-color: #ef4444;
+        }
+    }
+
+    .select-arrow {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text);
+        pointer-events: none;
+        font-size: 12px;
+    }
+}
+
+.day-chip {
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.2s;
+
+    &-active {
+        background: var(--secondary);
+        color: white;
+        border-color: var(--secondary);
+    }
+}
+
+.btn-back {
+    width: 100%;
+    padding: 12px;
+    border-radius: 50px;
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+        background: #f0f5f5;
+    }
+}

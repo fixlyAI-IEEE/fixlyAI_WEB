@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
@@ -20,8 +20,8 @@ export class RegisterTech implements OnInit {
 
   currentStep = 1;
   isLoading = false;
-
-  form!: FormGroup;
+  @Input() form!: FormGroup;
+  
 
   constructor(
     private fb: FormBuilder,

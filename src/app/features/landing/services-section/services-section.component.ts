@@ -11,7 +11,7 @@ import { Service } from '../../../core/models/model';
 })
 export class ServicesSectionComponent {
 
-  readonly itemsPerPage = 4;
+   itemsPerPage = 4;
   currentPage = 0;
 
   services: Service[] = [
