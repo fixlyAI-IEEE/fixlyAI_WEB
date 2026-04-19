@@ -1,0 +1,15 @@
+.toggle-btn {
+  color: #8FA5A3;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+}
+.toggle-btn.active {
+  background-color: #2BD17C;
+  color: white;
+  box-shadow: 0 2px 8px rgba(43, 209, 124, 0.35);
+}
+.toggle-btn:not(.active):hover {
+  color: #0E3B3F;
+}

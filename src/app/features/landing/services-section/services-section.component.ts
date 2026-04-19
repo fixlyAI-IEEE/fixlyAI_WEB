@@ -20,10 +20,9 @@ export class ServicesSectionComponent {
     { id: 3, name: 'الكهرباء',          image: '/images/Professional_Electrical_Services_You_Can_Trust_–_ARA_M&E.jpg', icon: 'electrical_services' },
     { id: 4, name: 'الحدادة',           image: '/images/الحداد.jpg',                                                 icon: 'construction' },
     { id: 5, name: 'الخياطة',           image: '/images/الخياطة.jpg',                                                icon: 'styler' },
-    { id: 6, name: 'إصلاح الموبايلات',  image: 'images/موبايلات.png',                                                                   icon: 'phone_android' },
-    { id: 7, name: 'الميكانيكا',        image: 'images/أعمال-المراجعة-للصيانة-بداخل-مركز-صيانة-سيارات-بفيصل.jpg',                                                                   icon: 'car_repair' },
-    { id: 8, name: 'الدهانات والتشطيب', image: '/images/المحارة.jpg',                                                icon: 'format_paint' },
-    { id: 9, name: 'البلاط والسيراميك', image: '/images/البلاط.jpg',                                                 icon: 'layers' },
+    { id: 6, name: 'الميكانيكا',        image: 'images/أعمال-المراجعة-للصيانة-بداخل-مركز-صيانة-سيارات-بفيصل.jpg',                                                                   icon: 'car_repair' },
+    { id: 7, name: 'الدهانات والتشطيب', image: '/images/المحارة.jpg',                                                icon: 'format_paint' },
+    { id: 8, name: 'البلاط والسيراميك', image: '/images/البلاط.jpg',                                                 icon: 'layers' },
   ];
   get totalPages(): number {
     return Math.ceil(this.services.length / this.itemsPerPage);
