@@ -1,62 +1,57 @@
 <section class="pad-80 bg-white">
   <div class="container">
-    <div class="flex flex-row gap-16 items-start">
+    <div class="flex flex-col lg:flex-row gap-16 items-start">
 
-  
-      <div class="flex-1 text-right">
+      <div class="w-full lg:flex-1 text-right">
         <h2 class="text-[40px] font-extrabold text-[var(--secondary)] mb-3">تواصل معنا</h2>
         <p class="text-[16px] text-[var(--text)] mb-10 leading-relaxed">
           عندك سؤال؟ احنا هنا فريق الدعم متاح 24/7 للإجابة على أسئلتك ومساعدتك في أي وقت.
         </p>
 
         <div class="flex flex-col gap-6">
-
-          <div class="flex items-center justify-end gap-3">
+          <div class="flex items-center justify-start gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#f0fdf4] flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-[var(--secondary)] text-[18px]">call</span>
+            </div>
             <div class="text-right">
               <p class="text-[13px] text-[var(--text)]">اتصل بنا</p>
               <p class="text-[var(--primary)] font-bold text-[15px] mt-0.5">+2010234567</p>
             </div>
-            <div class="w-10 h-10 rounded-full bg-[#f0fdf4] flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[var(--secondary)] text-[18px]">call</span>
-            </div>
           </div>
 
-          <div class="flex items-center justify-end gap-3">
+          <div class="flex items-center justify-start gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#f0fdf4] flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-[var(--secondary)] text-[18px]">mail</span>
+            </div>
             <div class="text-right">
               <p class="text-[13px] text-[var(--text)]">البريد الإلكتروني</p>
               <p class="text-[var(--primary)] font-bold text-[15px] mt-0.5">fixly_ai&#64;gmail.com</p>
             </div>
-            <div class="w-10 h-10 rounded-full bg-[#f0fdf4] flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[var(--secondary)] text-[18px]">mail</span>
-            </div>
           </div>
 
-          <div class="flex items-center justify-end gap-3">
+          <div class="flex items-center justify-start gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#f0fdf4] flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-[var(--secondary)] text-[18px]">location_on</span>
+            </div>
             <div class="text-right">
               <p class="text-[13px] text-[var(--text)]">الموقع</p>
               <p class="text-[var(--primary)] font-bold text-[15px] mt-0.5">قنا، مصر</p>
             </div>
-            <div class="w-10 h-10 rounded-full bg-[#f0fdf4] flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[var(--secondary)] text-[18px]">location_on</span>
-            </div>
           </div>
-
         </div>
       </div>
 
-    
-      <div class="flex-1 bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
-
-        <h3 class="text-[22px] font-extrabold text-[var(--primary)] text-right mb-6">أرسل رسالة</h3>
+      <div class="w-full lg:flex-1 bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
+        <h3 class="text-[36px] font-extrabold text-[var(--secondary)] text-right mb-6">أرسل رسالة</h3>
 
         <div class="flex flex-col gap-4">
-
           <div class="flex flex-col gap-1">
             <label class="text-right text-[14px] font-medium text-[var(--primary)]">الاسم كامل</label>
             <div class="relative">
               <input
                 type="text"
                 placeholder="الاسم كامل"
+                [(ngModel)]="formData.name"
                 class="w-full bg-white rounded-xl px-4 py-3 text-right pl-10 text-[14px] border border-gray-200 focus:border-[var(--secondary)] outline-none transition"
               />
               <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-[18px]">person</span>
@@ -69,6 +64,7 @@
               <input
                 type="tel"
                 placeholder="01012345678"
+                [(ngModel)]="formData.phone"
                 class="w-full bg-white rounded-xl px-4 py-3 text-right pl-10 text-[14px] border border-gray-200 focus:border-[var(--secondary)] outline-none transition"
               />
               <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-[18px]">call</span>
@@ -80,14 +76,18 @@
             <textarea
               placeholder="اكتب رسالتك هنا"
               rows="4"
+              [(ngModel)]="formData.message"
               class="w-full bg-white rounded-xl px-4 py-3 text-right text-[14px] border border-gray-200 focus:border-[var(--secondary)] outline-none resize-none transition"
             ></textarea>
           </div>
 
-          <button class="w-full bg-[var(--secondary)] hover:bg-[var(--hover)] text-white font-bold text-[16px] py-3 rounded-xl transition mt-2">
-            إرسال الرسالة
+          <button
+            (click)="sendMessage()"
+            [disabled]="isLoading"
+            class="w-full bg-[var(--secondary)] hover:bg-[var(--hover)] text-white font-bold text-[16px] py-3 rounded-xl transition mt-2"
+          >
+            {{ isLoading ? 'جاري الإرسال...' : 'إرسال الرسالة' }}
           </button>
-
         </div>
       </div>
 

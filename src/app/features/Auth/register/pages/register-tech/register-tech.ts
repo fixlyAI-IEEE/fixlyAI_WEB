@@ -19,7 +19,7 @@ export class RegisterTech implements OnInit {
   currentStep = 1;
   isLoading = false;
   @Input() form!: FormGroup;
-  
+
 
   constructor(
     private fb: FormBuilder,

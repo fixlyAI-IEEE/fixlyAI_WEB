@@ -6,21 +6,21 @@
       <p class="text-[16px] text-[var(--text)]">ماذا يقول مستخدمونا؟</p>
     </div>
 
-    <div class="grid grid-cols-3 gap-5 mb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
       @for (review of visibleReviews; track review.id) {
         <div class="bg-white rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
 
           <div class="flex items-start justify-between flex-row-reverse mb-5">
 
-     
+
             <svg width="44" height="36" viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 40V24.444C0 17.037 2.133 11.022 6.4 6.4C10.667 1.778 16.356 0 23.467 0L25.6 4.444C21.156 5.333 17.6 7.556 14.933 11.111C12.267 14.667 10.933 18.519 10.933 22.667H20.267V40H0ZM27.733 40V24.444C27.733 17.037 29.867 11.022 34.133 6.4C38.4 1.778 44.089 0 51.2 0L53.333 4.444C48.889 5.333 45.333 7.556 42.667 11.111C40 14.667 38.667 18.519 38.667 22.667H48V40H27.733Z" fill="#2BD17C"/>
             </svg>
 
-        
+
            <div class="flex items-center gap-3">
 
- 
+
   <div class="w-[52px] h-[52px] rounded-full p-[2px] bg-[var(--secondary)] flex-shrink-0">
     <img
       [src]="review.image"
@@ -29,7 +29,7 @@
     />
   </div>
 
-  
+
   <div class="flex flex-col text-right">
     <h4 class="text-[var(--primary)] font-bold text-[15px]">
       {{ review.name }}
@@ -46,7 +46,7 @@
   </div>
 
 </div>
-</div> 
+</div>
 
           <p class="text-[var(--text)] text-[14px] leading-relaxed text-right">
             {{ review.text }}
