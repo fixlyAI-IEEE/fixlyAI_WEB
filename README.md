@@ -1,59 +1,117 @@
-# FixlyAI
+# Fixly AI 🔧
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.2.
+> A smart platform connecting clients with trusted craftsmen and service professionals.
 
-## Development server
+---
 
-To start a local development server, run:
+## 📌 Overview
 
-```bash
-ng serve
+**Fixly AI** is a web application that bridges the gap between clients and skilled workers across various trades — including plumbers, electricians, carpenters, painters, and more. The platform offers a seamless experience for booking, managing, and reviewing professional services.
+
+---
+
+## 🎨 Figma Design
+
+View the full UI/UX design on Figma:
+👉 [Fixly AI — Figma Design](https://www.figma.com/design/8TXvDcVlszS4y3bRKXKcFt/Fixly-AI?node-id=0-1&p=f&t=R0cEoA4rwM4plUXy-0)
+
+---
+
+## 🚀 Features
+
+- 🔐 **Authentication** — Login, Register, and Forgot Password with a clean RTL Arabic UI
+- 🏠 **Landing Page** — Hero section, Services, How It Works, Workers, Reviews, and Contact Us
+- 👷 **Workers Section** — Browse and filter skilled professionals by category
+- ⭐ **Reviews System** — Client feedback and ratings for each worker
+- 📱 **Responsive Design** — Fully responsive across desktop and mobile
+- 🌙 **RTL Support** — Full Arabic right-to-left layout
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Angular 17+ (Standalone Components) |
+| Styling | Tailwind CSS |
+| Font | Tajawal (Google Fonts) |
+| Alerts | SweetAlert2 |
+| Routing | Angular Router (Lazy Loading) |
+| State | Angular Signals |
+
+---
+
+## 🎨 Design System
+
+```css
+--primary:    #0E3B3F   /* Dark Teal */
+--secondary:  #2BD17C   /* Green */
+--hover:      #26BF72   /* Green Hover */
+--text:       #8FA5A3   /* Muted */
+--background: #FFFFFF   /* White */
+--warning:    #F59E0B   /* Amber */
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 📁 Project Structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+src/
+├── app/
+│   ├── core/
+│   │   └── guards/
+│   │       └── auth-guard.ts
+│   ├── features/
+│   │   ├── Auth/
+│   │   │   ├── auth.module.ts
+│   │   │   ├── auth-layout/
+│   │   │   ├── login/
+│   │   │   ├── register/
+│   │   │   └── forgot-password/
+│   │   └── landing/
+│   │       ├── landing.ts
+│   │       ├── hero-section/
+│   │       ├── services-section/
+│   │       ├── how-it-works/
+│   │       ├── workers-section/
+│   │       ├── reviews-section/
+│   │       └── contact-us/
+│   └── component/
+│       └── shared/
+│           └── nav-bar/
+├── assets/
+│   └── images/
+└── styles.css
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## ⚙️ Getting Started
 
-## Building
+### Prerequisites
+- PHP (Laravel 12)
+- Angular CLI 17+
 
-To build the project run:
+## 🗺️ Routes
 
-```bash
-ng build
-```
+| Path | Page |
+|---|---|
+| `/` | Landing Page |
+| `/auth/login` | Login |
+| `/auth/register` | Register |
+| `/auth/forgot-password` | Forgot Password |
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 👥 Contributors
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+| Name | Role |
+| Mai Mohamed | UI/UX Designer |
+|Naira Mohamed|Backend Developer|
+| Rawan Bahaa | Frontend Developer |
+| Reham Ahmed  | Frontend Developer |
 
-```bash
-ng test
-```
+--
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<p align="center">Built with ❤️ for skilled workers everywhere</p>

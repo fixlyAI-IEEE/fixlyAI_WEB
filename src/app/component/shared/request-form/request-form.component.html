@@ -1,15 +1,11 @@
 @if (isOpen) {
   <!-- Overlay -->
-  <div
-    class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
-    (click)="close()"
-  >
+  <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center" (click)="close()">
     <!-- Modal -->
     <div
       class="bg-white rounded-2xl p-8 w-full max-w-[500px] mx-4 relative"
       (click)="$event.stopPropagation()"
     >
-
       <!-- Header -->
       <div class="flex items-center justify-between mb-6">
         <button (click)="close()" class="text-gray-400 hover:text-gray-600 transition">
@@ -20,17 +16,21 @@
 
       <!-- الخدمة -->
       <div class="mb-5">
-        <label class="block text-right text-[14px] font-medium text-[var(--primary)] mb-3">الخدمة</label>
-        <div class="flex flex-wrap gap-2 justify-end">
-          @for (service of services; track service) {
+        <label class="block text-right text-[14px] font-medium text-[var(--primary)] mb-3"
+          >الخدمة</label
+        >
+        <div class="flex flex-wrap gap-2 justify-start">
+          @for (service of services; track service.id) {
             <button
-              (click)="selectService(service)"
+              (click)="selectService(service.name, service.id)"
               class="px-4 py-2 rounded-full text-[13px] font-medium border transition"
-              [class]="selectedService === service
-                ? 'bg-[var(--secondary)] text-white border-[var(--secondary)]'
-                : 'bg-white text-[var(--primary)] border-gray-200 hover:border-[var(--secondary)]'"
+              [class]="
+                selectedService === service.name
+                  ? 'bg-[var(--secondary)] text-white border-[var(--secondary)]'
+                  : 'bg-white text-[var(--primary)] border-gray-200 hover:border-[var(--secondary)]'
+              "
             >
-              {{ service }}
+              {{ service.name }}
             </button>
           }
         </div>
@@ -38,23 +38,32 @@
 
       <!-- الموقع -->
       <div class="mb-5">
-        <label class="block text-right text-[14px] font-medium text-[var(--primary)] mb-2">الموقع</label>
+        <label class="block text-right text-[14px] font-medium text-[var(--primary)] mb-2"
+          >الموقع</label
+        >
         <div class="relative">
           <input
             type="text"
             placeholder="تحديد الموقع"
+            [(ngModel)]="city"
             class="w-full border border-gray-200 rounded-xl px-4 py-3 pl-10 text-right text-[14px] outline-none focus:border-[var(--secondary)] transition"
           />
-          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-[18px]">location_on</span>
+          <span
+            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-[18px]"
+            >location_on</span
+          >
         </div>
       </div>
 
       <!-- وصف المشكلة -->
       <div class="mb-6">
-        <label class="block text-right text-[14px] font-medium text-[var(--primary)] mb-2">وصف المشكلة</label>
+        <label class="block text-right text-[14px] font-medium text-[var(--primary)] mb-2"
+          >وصف المشكلة</label
+        >
         <textarea
           placeholder="اكتب مشكلتك هنا"
           rows="4"
+          [(ngModel)]="description"
           class="w-full border border-gray-200 rounded-xl px-4 py-3 text-right text-[14px] outline-none focus:border-[var(--secondary)] transition resize-none"
         ></textarea>
       </div>
@@ -68,12 +77,12 @@
           إلغاء
         </button>
         <button
+          (click)="submitRequest()"
           class="flex-1 bg-[var(--secondary)] hover:bg-[var(--hover)] text-white py-3 rounded-xl font-bold text-[15px] transition"
         >
           إرسال الطلب
         </button>
       </div>
-
     </div>
   </div>
 }

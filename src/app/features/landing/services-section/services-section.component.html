@@ -1,14 +1,14 @@
-<section class="py-19 bg-[#f0fdf4]">
-  <div class="container">
+<section class="py-16 bg-[#f0fdf4]">
+  <div class="max-w-6xl mx-auto px-4">
 
-    <div class="flex items-start justify-between mb-10" style="direction: ltr;">
+    <div class="flex items-start justify-between mb-10 flex-wrap gap-3" style="direction: ltr;">
 
-     
+
       <a class="flex items-center gap-2 text-[var(--primary)] font-bold text-[15px] cursor-pointer hover:text-[var(--secondary)] transition mt-2">
         عرض الكل ←
       </a>
 
-    
+
       <div class="text-right">
         <h2 class="text-[36px] font-extrabold text-[var(--secondary)]">الخدمات</h2>
         <p class="text-[15px] text-[var(--text)]">كل ما تحتاجه في مكان واحد</p>
@@ -17,13 +17,13 @@
     </div>
 
     <!-- Cards -->
-    <div class="grid grid-cols-4 gap-5 mb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
       @for (service of visibleServices; track service.id) {
         <app-reusable-card [service]="service" />
       }
     </div>
 
-   
+
    <div class="flex items-center justify-end gap-3">
 
       <button
