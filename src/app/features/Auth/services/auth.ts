@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { loginrequest, loginresponse, registerRequest, registerResponse, register_as_workerRequest, RegisterAsWorkerResponse } from '../../../core/models/model';
+import { loginrequest, loginresponse, registerRequest, registerResponse, register_as_workerRequest, RegisterAsWorkerResponse, SendOtpRequest, VerifyOtpRequest, ResetPasswordRequest,ResetPasswordResponse, VerifyOtpResponse, SendOtpResponse } from '../../../core/models/model';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
@@ -25,8 +25,8 @@ export class Auth {
       data
     ).pipe(
       tap((res: loginresponse) => {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', JSON.stringify(res.data.user));
+       sessionStorage.setItem('token', res.data.token);
+        sessionStorage.setItem('user', JSON.stringify(res.data.user));
       })
     );
   }
@@ -39,14 +39,27 @@ export class Auth {
     return this.http.post<RegisterAsWorkerResponse>(apiEndpoints.register_as_worker, data);
   }
 
-
-
-  logout() {
-    localStorage.clear();
+   sendOtp(body: SendOtpRequest): Observable<SendOtpResponse> {
+    return this.http.post<SendOtpResponse>(apiEndpoints.send_otp, body);
   }
 
+  verifyOtp(body: VerifyOtpRequest): Observable<VerifyOtpResponse> {
+    return this.http.post<VerifyOtpResponse>(apiEndpoints.verify_otp, body);
+  }
+
+  resetPassword(body: ResetPasswordRequest): Observable<ResetPasswordResponse> {
+    return this.http.post<ResetPasswordResponse>(apiEndpoints.reset_password, body);
+  }
+
+
+logout() {
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('user');
+  this.router.navigate(['/landing']);
+}
+
   getToken() {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   isLoggedIn(): boolean {

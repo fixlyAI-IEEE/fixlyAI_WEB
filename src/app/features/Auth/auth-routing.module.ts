@@ -22,6 +22,16 @@ const routes: Routes = [
                     import('./forget-password/forget-password').then(m => m.ForgetPassword)
             },
             {
+                path: 'verify-otp',
+                loadComponent: () =>
+                    import('./verify-otp/verify-otp').then(m => m.VerifyOtp)
+            },
+            {
+                path: 'reset-password',
+                loadComponent: () =>
+                    import('./reset-pass/reset-pass').then(m => m.ResetPass)
+            },
+            {
                 path: '',
                 redirectTo: 'login',
                 pathMatch: 'full'

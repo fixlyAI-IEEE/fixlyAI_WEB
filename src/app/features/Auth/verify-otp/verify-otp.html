@@ -1,0 +1,51 @@
+<!-- verify-otp.component.html -->
+<div class="w-full">
+
+  <div class="text-right mb-8">
+    <h1 class="text-2xl font-extrabold mb-2" style="color: var(--secondary);">
+      تأكيد رقم الهاتف
+    </h1>
+    <p class="text-sm" style="color: var(--text);">
+      أدخل رمز التحقق المرسل إلى رقمك ****{{ maskedPhone }}
+    </p>
+  </div>
+
+  <!-- OTP Inputs -->
+  <div class="flex gap-3 justify-center mb-6 mt-8" dir="ltr">
+    <input *ngFor="let i of [0,1,2,3,4,5]"
+      type="text" maxlength="1" inputmode="numeric"
+      class="otp-input text-center text-xl font-bold"
+      style="
+        width: 48px; height: 56px;
+        border: 1.5px solid #E5E5E5;
+        border-radius: 12px;
+        font-family: 'Tajawal', sans-serif;
+        color: var(--primary);
+        outline: none;
+        transition: border-color 0.2s;
+      "
+      [id]="'otp-' + i"
+      (input)="onInput($event, i)"
+      (keydown)="onKeydown($event, i)"
+    />
+  </div>
+
+  <button (click)="submit()" [disabled]="isLoading"
+    class="w-full font-bold text-base mb-4"
+    style="
+      background-color: var(--secondary);
+      color: white; padding: 14px;
+      border-radius: 12px; border: none;
+      cursor: pointer; font-family: 'Tajawal', sans-serif;
+    ">
+    {{ isLoading ? 'جاري التحقق...' : 'تأكيد' }}
+  </button>
+
+  <div class="text-center">
+    <span class="text-sm cursor-pointer hover:underline"
+      style="color: var(--text);" routerLink="/auth/login">
+      العودة لتسجيل الدخول ←
+    </span>
+  </div>
+
+</div>

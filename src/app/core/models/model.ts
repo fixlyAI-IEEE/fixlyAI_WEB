@@ -1,25 +1,25 @@
-export interface loginrequest{
+export interface loginrequest {
   phone: string;
   password: string;
 }
 
 export interface loginresponse {
-    message: string;
-    data: {
-        user: {
-            id: number;
-            name: string;
-            phone: string;
-            role: string;
-            city: string;
-            areas: null;
-        },
-        token: string;
-    }
+  message: string;
+  data: {
+    user: {
+      id: number;
+      name: string;
+      phone: string;
+      role: string;
+      city: string;
+      areas: null;
+    },
+    token: string;
+  }
 }
 
-export interface registerRequest{
-  
+export interface registerRequest {
+
   name: string;
   phone: string;
   password: string;
@@ -27,24 +27,23 @@ export interface registerRequest{
   city: string;
 }
 
-export interface registerResponse{
-  
-    "message": string,
-    "data": {
-        "user": {
-            "id": number,
-            "name": string,
-            "phone": string,
-            "role": string,
-            "city": string,
-            "areas": null
-        },
-        "token": string
-    }
+export interface registerResponse {
+
+  "message": string,
+  "data": {
+    "user": {
+      "id": number,
+      "name": string,
+      "phone": string,
+      "role": string,
+      "city": string,
+      "areas": null
+    },
+    "token": string
+  }
 }
 
-export interface register_as_workerRequest{
-  
+export interface register_as_workerRequest {
 
   name: string;
   phone: string;
@@ -78,6 +77,33 @@ export interface RegisterAsWorkerResponse {
   };
 }
 
+export interface SendOtpRequest {
+  phone: string;
+}
+
+export interface SendOtpResponse {
+  message: string;
+}
+
+
+export interface VerifyOtpRequest {
+  phone: string;
+  otp: string;
+}
+export interface VerifyOtpResponse {
+  message: string;
+}
+
+export interface ResetPasswordRequest {
+  phone: string;
+  password: string;
+  password_confirmation: string;
+}
+
+export interface ResetPasswordResponse {
+  message: string;
+}
+//---------------------------------------------------------
 export interface Service {
   id: number;
   name: string;
@@ -97,6 +123,6 @@ export interface Review {
   name: string;
   image: string;
   text: string;
-   rating: number;
+  rating: number;
 }
 
