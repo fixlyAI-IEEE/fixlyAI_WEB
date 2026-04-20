@@ -68,11 +68,12 @@
 
           </div>
 
-          <button
-            class="w-full bg-[var(--secondary)] hover:bg-[var(--hover)] text-white font-bold py-2.5 sm:py-3 rounded-xl transition text-[14px] sm:text-[15px]"
-          >
-            قبول الطلب
-          </button>
+         <button
+  (click)="confirmOffer(offer.worker_id)"
+  class="w-full bg-[var(--secondary)] hover:bg-[var(--hover)] text-white font-bold py-2.5 sm:py-3 rounded-xl transition text-[14px] sm:text-[15px]"
+>
+  قبول الطلب
+</button>
 
         </div>
       }
@@ -80,10 +81,10 @@
     </div>
 
   }
-      <!-- <app-rating
-  [isOpen]="isRateOpen"
-  [requestId]="requestId"
-  (closed)="isRateOpen = false"
-/> -->
 
+<app-rating
+    [isOpen]="isRateOpen"
+    [requestId]="selectedRequestId"
+    (closed)="isRateOpen = false"
+  />
 </section>

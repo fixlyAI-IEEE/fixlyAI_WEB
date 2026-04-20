@@ -9,7 +9,7 @@ import { RequestServiceRequest } from '../../../core/models/model';
 @Component({
   selector: 'app-request-form',
   templateUrl: './request-form.component.html',
-  // styleUrls: ['./request-form.component.css'],
+  standalone: true,
   imports: [CommonModule, FormsModule],
 })
 export class RequestFormComponent {
@@ -27,6 +27,10 @@ export class RequestFormComponent {
     { name: 'النجارة', id: 2 },
     { name: 'الكهرباء', id: 3 },
     { name: 'التكييف', id: 4 },
+    { name: 'الدهانات', id: 5 },
+    { name: 'التنظيف', id: 6 },
+    { name: 'الحدادة', id: 7 },
+    { name: 'البلاط', id: 8 },
   ];
 
   private router = inject(Router);
@@ -41,15 +45,16 @@ export class RequestFormComponent {
     this.closed.emit();
   }
 
+
   submitRequest(): void {
+
     if (!this.isAuthenticated()) {
-      this.promptLogin();
-      return;
+      return this.promptLogin();
     }
 
+
     if (!this.isFormValid()) {
-      this.showValidationError();
-      return;
+      return this.showValidationError();
     }
 
     this.sendRequest();
@@ -58,11 +63,12 @@ export class RequestFormComponent {
   // ─── Private Helpers ──────────────────────────────
 
   private isAuthenticated(): boolean {
+
     return !!localStorage.getItem('token');
   }
 
   private isFormValid(): boolean {
-    return !!this.city && !!this.description;
+    return !!this.city.trim() && !!this.description.trim();
   }
 
   private promptLogin(): void {
@@ -72,7 +78,7 @@ export class RequestFormComponent {
       icon: 'info',
       showCancelButton: true,
       confirmButtonText: 'سجل دخول دلوقتي',
-      cancelButtonText: 'لاحقا',
+      cancelButtonText: 'لاحقاً',
       confirmButtonColor: '#10b981',
       reverseButtons: true,
     }).then((result) => {
@@ -86,7 +92,7 @@ export class RequestFormComponent {
   private showValidationError(): void {
     Swal.fire({
       title: 'تأكد من البيانات',
-      text: 'من فضلك املا كل الحقول',
+      text: 'من فضلك املأ كل الحقول (الموقع ووصف المشكلة)',
       icon: 'warning',
       confirmButtonColor: '#10b981',
     });
@@ -105,18 +111,22 @@ export class RequestFormComponent {
       next: (res) => {
         Swal.fire({
           title: 'تم إرسال الطلب ✅',
-          text: 'هنتواصل معاكي في أقرب وقت!',
+          text: 'جاري البحث عن فنيين، سيتم نقلك لصفحة العروض',
           icon: 'success',
           confirmButtonColor: '#10b981',
+          timer: 2000,
+          showConfirmButton: false
         }).then(() => {
           this.close();
+
           this.router.navigate(['/incoming-offers', res.data.id]);
         });
       },
-      error: () => {
+      error: (err) => {
+        this.isLoading = false;
         Swal.fire({
           title: 'حصل مشكلة 😕',
-          text: 'حاول تاني بعد قليل',
+          text: err.error?.message || 'حاول تاني بعد قليل',
           icon: 'error',
           confirmButtonColor: '#dc2626',
         });
