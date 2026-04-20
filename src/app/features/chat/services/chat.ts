@@ -3,11 +3,10 @@ import { Injectable }               from '@angular/core';
 import { HttpClient, HttpHeaders }  from '@angular/common/http';
 import { Observable }               from 'rxjs';
 import { ChatRequest, ChatResponse } from '../models/chat.models';
-import { environment }              from '../../environments/environment';
-
+import { environment } from '../../../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class Chat {
-  private readonly endpoint = `${environment.apiUrl}/chat`;
+  private readonly endpoint = `${environment.baseUrl}/chat`;
 
   constructor(private http: HttpClient) {}
 

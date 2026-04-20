@@ -10,7 +10,7 @@
   <textarea
     #inputRef
     [(ngModel)]="text"
-    (keydown.enter)="onEnter($event as KeyboardEvent)"
+    (keydown.enter)="onEnter($event)"
     (input)="autoResize()"
     placeholder="اكتب مشكلتك هنا..."
     rows="1"

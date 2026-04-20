@@ -22,13 +22,14 @@ export class ChatInput {
     setTimeout(() => this.resetHeight(), 0);
   }
 
-  onEnter(event: KeyboardEvent): void {
-    if (!event.shiftKey) {
-      event.preventDefault();
-      this.send();
-    }
-  }
+onEnter(event: Event) {
+  const keyboardEvent = event as KeyboardEvent;
 
+  if (keyboardEvent.shiftKey) return;
+
+  keyboardEvent.preventDefault();
+  this.send();
+}
   autoResize(): void {
     const el = this.inputRef?.nativeElement;
     if (!el) return;
