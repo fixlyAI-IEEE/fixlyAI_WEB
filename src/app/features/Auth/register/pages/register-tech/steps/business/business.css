@@ -93,7 +93,7 @@
     color: var(--text);
     transition: all 0.2s;
 
-    &-active {
+    .day-chip-active {
         background: var(--secondary);
         color: white;
         border-color: var(--secondary);

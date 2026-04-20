@@ -25,14 +25,14 @@ export class ForgetPassword {
     this.isLoading = true;
 
     this.Auth.sendOtp({ phone: this.phone }).subscribe({
-      next: (res:SendOtpResponse) => {
+      next: () => {
         this.isLoading = false;
         sessionStorage.setItem('reset_phone', this.phone);
         this.router.navigate(['/auth/verify-otp']);
       },
-      error: (res:SendOtpResponse) => {
+      error: (err) => {
         this.isLoading = false;
-        Swal.fire({ icon: 'error', title: 'خطأ', text: res.message, confirmButtonText: 'حسناً' });
+        Swal.fire({ icon: 'error', title: 'خطأ', text: err.error?.message, confirmButtonText: 'حسناً' });
       }
     });
   }

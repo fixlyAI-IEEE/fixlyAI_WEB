@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-business',
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './business.html',
   styleUrl: './business.css',
 })
@@ -25,8 +26,8 @@ export class Business {
     { id: 8, name: 'البلاط والسيراميك' }
   ];
   cities = ['سوهاج', 'الأقصر', 'أسوان', 'قنا'];
-  areas = [] = [];
-  loadingData = true;
+  areas: string[] = [];
+  loadingData = false
   daysOptions = ['السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'];
 
   isInvalid(key: string): boolean {

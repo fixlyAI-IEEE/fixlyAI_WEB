@@ -130,37 +130,6 @@ export interface ResetPasswordRequest {
 export interface ResetPasswordResponse {
   message: string;
 }
-//---------------------------------------------------------
-
-//Ai_Chatbot
-export interface ChatRequest {
-  message: string;
-}
-export interface ChatResponse {
-
-  "message": string,
-  "suggested_buttons": [
-    {
-      "label": "Show available workers",
-      "action": "show_workers",
-      "job_type_id": number
-    },
-    {
-      "label": "Send a request",
-      "action": "send_request",
-      "job_type_id": number
-    },
-    {
-      "label": "Ask another question",
-      "action": "new_question"
-    }
-  ],
-  "recommended_job_type": {
-    "id": number,
-    "name": string
-  },
-  "recommended_workers": []
-}
 
 //---------------------------------------------------------
 

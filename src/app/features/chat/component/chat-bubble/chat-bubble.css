@@ -1,0 +1,97 @@
+.bubble-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  animation: fadeUp 0.3s ease forwards;
+}
+
+.user-row {
+  flex-direction: row;        
+  justify-content: flex-start;
+  direction: ltr;
+}
+
+.bot-row {
+  flex-direction: row;
+  justify-content: flex-start;
+  direction: rtl;
+}
+
+.bubble-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+
+  &.user-avatar {
+    border: 2px solid var(--secondary);
+  }
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.user-bubble {
+  background: var(--secondary);
+  color: white;
+  border-radius: 18px 18px 4px 18px;
+  direction: rtl;
+}
+
+.bot-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .bot-name {
+    font-size: 11px;
+    color: var(--text);
+    font-weight: 700;
+    padding-right: 4px;
+  }
+}
+
+.bot-bubble {
+  background: white;
+  color: var(--primary);
+  border-radius: 18px 18px 18px 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  direction: rtl;
+}
+
+.suggested-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  direction: rtl;
+  margin-top: 4px;
+}
+
+.suggested-btn {
+  padding: 7px 16px;
+  border-radius: 50px;
+  border: 1.5px solid var(--secondary);
+  background: white;
+  color: var(--secondary);
+  font-family: 'Tajawal', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--secondary);
+    color: white;
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

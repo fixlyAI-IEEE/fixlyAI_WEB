@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 
+import { Router } from '@angular/router';
+import { Auth } from '../../Auth/services/auth';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-hero-section',
   imports: [RouterModule],
@@ -37,6 +40,28 @@ export class HeroSection {
       });
     } else {
       this.router.navigate(['/request-form']);
+  constructor(private router: Router, private auth: Auth) { }
+  openChat() {
+    if (this.auth.isLoggedIn()) {
+      swal.fire({
+        title: 'أهلاً بيك 👋',
+        text: 'أنا هنا للمساعدة 😄',
+        icon: 'success',
+        confirmButtonText: 'ابدأ المحادثة',
+        confirmButtonColor: 'var(--primary)'
+      }).then(() => {
+        this.router.navigate(['/chat']);
+      });
+    } else {
+      swal.fire({
+        title: 'أهلاً بيك 👋',
+        text: 'يجب تسجيل الدخول أولاً',
+        icon: 'warning',
+        confirmButtonText: 'تسجيل الدخول',
+        confirmButtonColor: 'var(--primary)'
+      }).then(() => {
+        this.router.navigate(['/auth/login']);
+      });
     }
   }
 }

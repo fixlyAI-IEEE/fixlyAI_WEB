@@ -13,7 +13,6 @@ import { FormBuilder } from '@angular/forms';
 })
 export class Auth {
   constructor(
-    private fb: FormBuilder,
     private router: Router,
     private http: HttpClient
   ) { }

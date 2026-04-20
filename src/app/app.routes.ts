@@ -21,6 +21,16 @@ export const routes: Routes = [
     path: 'incoming-offers/:id',
     loadComponent: () =>
       import('./features/Incoming-offers/Incoming-offers.component').then(m => m.IncomingOffersComponent)
+    path: 'chat',
+    // canActivate: [authGuard],
+    loadChildren: () =>
+      import('./features/chat/chat-module').then(m => m.ChatModule)
+  },
+  {
+    path: 'dashboard',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./Worker/dashboard/dashboard').then(m => m.Dashboard)
   },
   {
     path: '**',
