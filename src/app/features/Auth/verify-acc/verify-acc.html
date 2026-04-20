@@ -5,26 +5,14 @@
 </div>
 
 <div class="flex justify-center gap-3 mt-6">
-  <input
-    *ngFor="let digit of otp; let i = index"
-    [id]="'otp-' + i"
-    type="text"
-    inputmode="numeric"
-    maxlength="1"
-    autocomplete="one-time-code"
-    [value]="digit"
-    (input)="onInput($event, i)"
-    (keydown)="onKeydown($event, i)"
-    (paste)="onPaste($event)"
-    class="w-12 h-12 text-center text-lg font-bold border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)] transition"
-  />
+  <input *ngFor="let digit of otp; let i = index; trackBy: trackByIndex" [id]="'otp-' + i" type="text"
+    inputmode="numeric" maxlength="1" autocomplete="one-time-code" (input)="onInput($event, i)"
+    (keydown)="onKeydown($event, i)" (paste)="onPaste($event)" dir="ltr"
+    class="w-12 h-12 text-center text-lg font-bold border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)] transition" />
 </div>
 
-<button
-  class="w-full mt-6 bg-[var(--secondary)] text-white py-3 rounded-xl font-bold disabled:opacity-50"
-  [disabled]="!isComplete || isLoading"
-  (click)="verify()"
->
+<button class="w-full mt-6 bg-[var(--secondary)] text-white py-3 rounded-xl font-bold disabled:opacity-50"
+  [disabled]="!isComplete || isLoading" (click)="verify()">
   <span *ngIf="!isLoading">تأكيد</span>
   <span *ngIf="isLoading">
     <i class="fas fa-spinner fa-spin ml-2"></i>
@@ -34,11 +22,8 @@
 
 <p class="text-center text-sm mt-4 text-gray-500">
   لم تستلم الكود؟
-  <button
-    class="text-[var(--primary)] font-semibold ml-1 disabled:opacity-50"
-    [disabled]="isResending"
-    (click)="resend()"
-  >
+  <button class="text-[var(--primary)] font-semibold ml-1 disabled:opacity-50" [disabled]="isResending"
+    (click)="resend()">
     {{ isResending ? 'جاري الإرسال...' : 'إعادة الإرسال' }}
   </button>
 </p>

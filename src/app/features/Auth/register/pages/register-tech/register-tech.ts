@@ -54,13 +54,8 @@ export class RegisterTech implements OnInit {
     const step1Controls = ['name', 'phone', 'password', 'password_confirmation'];
     step1Controls.forEach(key => this.form.get(key)?.markAsTouched());
 
-    const step1Valid = step1Controls.every(key => this.form.get(key)?.valid);
-    const noMismatch = !this.form.hasError('mismatch');
-
-    if (step1Valid && noMismatch) {
-      this.currentStep = 2;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    this.currentStep = 2;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   onSubmit(): void {
     if (this.form.invalid) {

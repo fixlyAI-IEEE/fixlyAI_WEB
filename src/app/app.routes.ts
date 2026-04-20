@@ -14,16 +14,25 @@ export const routes: Routes = [
   },
   {
     path: 'chat',
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./features/chat/chat-module').then(m => m.ChatModule)
   },
   {
-    path: 'dashboard',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('./Worker/dashboard/dashboard').then(m => m.Dashboard)
+    path: 'worker',
+    // canActivate: [authGuard],
+    loadComponent: () =>
+      import('./Worker/worker-dashboard/worker-dashboard')
+        .then(m => m.WorkerDashboard)
   },
+  {
+    path: 'worker-requests',
+    // canActivate: [authGuard],
+    loadComponent: () =>
+      import('./Worker/worker-requests/worker-requests')
+        .then(m => m.WorkerRequests)
+  },
+
   {
     path: '**',
     redirectTo: ''

@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-4" [formGroup]="form">
 
     <div>
         <label class="field-label">التخصص</label>
@@ -29,6 +29,8 @@
             <select formControlName="areas" [class.input-error]="isInvalid('areas')">
                 <option value="" disabled selected>اختر مناطق العمل</option>
                 <option *ngFor="let a of areas" [value]="a">{{ a }}</option>
+                <option value="أخرى">أخرى</option>
+                <option value="جميع المناطق">جميع المناطق</option>
             </select>
             <i class="fas fa-chevron-down select-arrow"></i>
         </div>

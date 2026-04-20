@@ -132,8 +132,48 @@ export interface ResetPasswordResponse {
 }
 
 //---------------------------------------------------------
-
-
+export interface WorkerOfferResponse {
+  message: string;
+  data: {
+    id: number;
+    description: string;
+    city: string;
+    status: string;
+    job_type: {
+      id: number;
+      name: string;
+    };
+    offered_workers: {
+      worker_id: number;
+      name: string;
+      rating: number;
+      pivot_status: string;
+    }[];
+    created_at: string;
+  };
+}
+export interface workerReq{
+  
+  "data": [
+    {
+      "id": number,
+      "description": string,
+      "city": string,
+      "status": string,
+      "job_type": {
+        "id": number,
+        "name": string
+      },
+      "pivot_status": string,
+      "created_at": string
+    }
+  ],
+  "meta": {
+    "current_page": 1,
+    "last_page": 1,
+    "total": 1
+  }
+}
 export interface Service {
   id: number;
   name: string;
