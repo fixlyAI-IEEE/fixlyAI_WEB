@@ -15,4 +15,10 @@ export const apiEndpoints = {
 
     //Ai_Chatbot
     chat: `${BASE_URL}/chat`,
+      // Services----------------------
+    messagesContact: `${BASE_URL}/messages`,
+    createRequest: `${BASE_URL}/requests`,
+    getOffers: (requestId: number) => `${BASE_URL}/requests/${requestId}/offers`,
+
+      rateWorker: (requestId: number) => `${BASE_URL}/requests/${requestId}/rate`,
 };

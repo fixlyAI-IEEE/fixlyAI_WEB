@@ -1,18 +1,18 @@
-<section class="pad-80 bg-white">
+<section id="workers" class="pad-80 bg-white">
   <div class="container">
 
-  
+
     <div class="text-center mb-12">
       <h2 class="text-[40px] font-extrabold text-[var(--secondary)] mb-3">فنيين موثوقين بانتظارك</h2>
       <p class="text-[16px] text-[var(--text)]">نخبة من المحترفين المعتمدين بأعلى التقييمات</p>
     </div>
 
-   
-    <div class="grid grid-cols-4 gap-5">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       @for (worker of workers; track worker.id) {
         <div class="relative rounded-2xl overflow-hidden h-[280px] cursor-pointer group">
 
-         
+
           <img
             [src]="worker.image"
             [alt]="worker.name"
@@ -21,7 +21,7 @@
 
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
 
-         
+
           <div class="absolute top-3 left-3 flex items-center gap-1 bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full">
             <span class="text-yellow-400 text-[14px]">★</span>
             <span class="text-white text-[13px] font-bold">{{ worker.rating }}</span>

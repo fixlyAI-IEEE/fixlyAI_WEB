@@ -1,0 +1,39 @@
+@if (isOpen) {
+  <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center" (click)="close()">
+    <div class="bg-white rounded-2xl p-8 w-full max-w-[480px] mx-4 text-center relative" (click)="$event.stopPropagation()">
+
+      <!-- Close -->
+      <button (click)="close()" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 transition">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+
+      <!-- Emoji -->
+      <div class="text-[80px] mb-4">😍</div>
+
+      <!-- Text -->
+      <h3 class="text-[22px] font-extrabold text-[var(--secondary)] mb-2">شكرًا لاختيارك لينا</h3>
+      <p class="text-[15px] text-[var(--text)] mb-8">يهمنا رأيك! قيّم تجربتك مع الفني والخدمة</p>
+
+      <!-- Stars -->
+      <div class="flex justify-center gap-3 mb-8">
+        @for (star of stars; track $index) {
+          <button (click)="setRating($index + 1)">
+            <span
+              class="text-[44px] transition"
+              [class]="$index < selectedRating ? 'text-yellow-400' : 'text-gray-200'"
+            >★</span>
+          </button>
+        }
+      </div>
+
+      <!-- Submit -->
+      <button
+        (click)="submit()"
+        class="w-full bg-[var(--secondary)] hover:bg-[var(--hover)] text-white font-bold text-[17px] py-4 rounded-2xl transition"
+      >
+        إرسال التقييم
+      </button>
+
+    </div>
+  </div>
+}

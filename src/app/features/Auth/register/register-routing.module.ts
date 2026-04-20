@@ -14,7 +14,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'user', pathMatch: 'full' },
       { path: 'user', component: RegisterUser },
       { path: 'tech', component: RegisterTech },
-      
+
+      { path: 'tech', component: RegisterTech }
     ]
   }
 ];
