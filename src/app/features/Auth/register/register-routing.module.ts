@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterLayout } from './register-layout/register-layout';
 import { RegisterUser } from './pages/register-user/register-user';
 import { RegisterTech } from './pages/register-tech/register-tech';
+import { Business } from './pages/register-tech/steps/business/business';
+import { Personal } from './pages/register-tech/steps/personal/personal';
 
 const routes: Routes = [
   {
@@ -11,7 +13,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'user', pathMatch: 'full' },
       { path: 'user', component: RegisterUser },
-      { path: 'tech', component: RegisterTech }
+      { path: 'tech', component: RegisterTech },
+      
     ]
   }
 ];

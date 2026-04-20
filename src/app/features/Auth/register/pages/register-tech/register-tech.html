@@ -1,1 +1,18 @@
-<p>register-tech works!</p>
+<app-step-indicator [currentStep]="currentStep" />
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+  <app-personal
+    *ngIf="currentStep === 1"
+    [form]="form"
+    (next)="nextStep()"
+  />
+
+  <app-business
+    *ngIf="currentStep === 2"
+    [form]="form"
+    [isLoading]="isLoading"
+    (back)="currentStep = 1"
+  />
+
+</form>

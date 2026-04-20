@@ -11,20 +11,19 @@ import { Service } from '../../../core/models/model';
 })
 export class ServicesSectionComponent {
 
-  readonly itemsPerPage = 4;
+   itemsPerPage = 4;
   currentPage = 0;
 
   services: Service[] = [
-    { id: 1, name: 'السباكة',  image: '/images/اعمال سباكة وصرف صحي دبي.jpg',  icon: 'plumbing' },
-    { id: 2, name: 'الكهرباء', image: '/images/Professional_Electrical_Services_You_Can_Trust_–_ARA_M&E.jpg',  icon: 'electrical_services' },
-    { id: 3, name: 'التكييف',  image: '/images/Heating Ventilation and Air Conditioning.jpg',        icon: 'ac_unit' },
-    { id: 4, name: 'النجارة',  image: '/images/carpenter.jpg', icon: 'carpenter' },
-    { id: 5, name: 'الدهانات', image: '',  icon: 'format_paint' },
-    { id: 6, name: 'التنظيف',  image: '/images/worker.jpg',  icon: 'cleaning_services' },
-    { id: 7, name: 'الحدادة',  image: '',   icon: 'construction' },
-    { id: 8, name: 'البلاط',   image: '',    icon: 'layers' },
+    { id: 1, name: 'النجارة',           image: '/images/carpenter.jpg',                                              icon: 'carpenter' },
+    { id: 2, name: 'السباكة',           image: '/images/اعمال سباكة وصرف صحي دبي.jpg  ',                              icon: 'plumbing' },
+    { id: 3, name: 'الكهرباء',          image: '/images/Professional_Electrical_Services_You_Can_Trust_–_ARA_M&E.jpg', icon: 'electrical_services' },
+    { id: 4, name: 'الحدادة',           image: '/images/الحداد.jpg',                                                 icon: 'construction' },
+    { id: 5, name: 'الخياطة',           image: '/images/الخياطة.jpg',                                                icon: 'styler' },
+    { id: 6, name: 'الميكانيكا',        image: 'images/أعمال-المراجعة-للصيانة-بداخل-مركز-صيانة-سيارات-بفيصل.jpg',                                                                   icon: 'car_repair' },
+    { id: 7, name: 'الدهانات والتشطيب', image: '/images/المحارة.jpg',                                                icon: 'format_paint' },
+    { id: 8, name: 'البلاط والسيراميك', image: '/images/البلاط.jpg',                                                 icon: 'layers' },
   ];
-
   get totalPages(): number {
     return Math.ceil(this.services.length / this.itemsPerPage);
   }
