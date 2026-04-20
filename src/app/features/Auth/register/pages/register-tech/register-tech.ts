@@ -19,7 +19,7 @@ export class RegisterTech implements OnInit {
   currentStep = 1;
   isLoading = false;
   @Input() form!: FormGroup;
-  
+
 
   constructor(
     private fb: FormBuilder,
@@ -62,7 +62,6 @@ export class RegisterTech implements OnInit {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
-
   onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -90,12 +89,9 @@ export class RegisterTech implements OnInit {
     this.Auth.registerWorker(formData as any).subscribe({
       next: (res) => {
         this.isLoading = false;
-        Swal.fire({
-          icon: 'success',
-          title: 'تم إنشاء الحساب!',
-          text: res.message,
-          confirmButtonText: 'ابدأ الآن',
-        }).then(() => this.router.navigate(['/landing']));
+        this.router.navigate(['/auth/verify-acc'], {
+          state: { phone: this.form.value.phone }
+        });
       },
       error: (err) => {
         this.isLoading = false;
@@ -107,7 +103,6 @@ export class RegisterTech implements OnInit {
       }
     });
   }
-
   get f() { return this.form.controls; }
   isInvalid(key: string) { return this.f[key].invalid && this.f[key].touched; }
 }

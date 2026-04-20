@@ -1,0 +1,19 @@
+<div class="input-wrapper">
+
+  <button class="attach-btn">
+    <i class="fas fa-plus"></i>
+  </button>
+
+  <input
+    type="text"
+    [(ngModel)]="message"
+    (keydown)="onKeydown($event)"
+    placeholder="|"
+    class="chat-input"
+  />
+
+  <button class="send-btn" (click)="send()" [disabled]="!message.trim()">
+    <i class="fas fa-paper-plane"></i>
+  </button>
+
+</div>

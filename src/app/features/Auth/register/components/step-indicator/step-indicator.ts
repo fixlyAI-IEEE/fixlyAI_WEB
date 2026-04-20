@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-step-indicator',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './step-indicator.html',
   styleUrl: './step-indicator.css',
 })

@@ -3,17 +3,24 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { Auth } from '../services/auth';
+import { AfterViewInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-verify-acc',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
+  standalone:true,
   templateUrl: './verify-acc.html',
   styleUrl: './verify-acc.css',
 })
-export class VerifyAcc implements OnInit {
-  phone       = '';
-  mode        = 'register'; 
-  otp         = ['', '', '', '', '', ''];
-  isLoading   = false;
+export class VerifyAcc implements OnInit, AfterViewInit {
+
+  phone = '';
+  mode = 'register';
+
+  otp: string[] = ['', '', '', '', '', ''];
+
+  isLoading = false;
   isResending = false;
 
   constructor(
@@ -23,38 +30,87 @@ export class VerifyAcc implements OnInit {
 
   ngOnInit(): void {
     this.phone = history.state?.phone ?? '';
-    this.mode  = history.state?.mode  ?? 'register';
+    this.mode = history.state?.mode ?? 'register';
 
     if (!this.phone) this.router.navigate(['/auth/register']);
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => this.focusInput(0), 0);
+  }
+
+  // ================= OTP Logic =================
+
   onInput(event: Event, index: number): void {
     const input = event.target as HTMLInputElement;
-    const val   = input.value.replace(/\D/g, '').slice(-1);
-    this.otp[index] = val;
-    input.value = val;
+    const value = input.value.replace(/\D/g, '');
 
-    if (val && index < 5) {
-      (document.getElementById(`otp-${index + 1}`) as HTMLInputElement)?.focus();
+    // paste أو كتابة سريع
+    if (value.length > 1) {
+      this.fillOtp(value);
+      return;
+    }
+
+    this.otp[index] = value;
+
+    if (value && index < 5) {
+      this.focusInput(index + 1);
+    }
+
+    // Auto verify (اختياري)
+    if (this.otpValue.length === 6) {
+      this.verify();
     }
   }
 
   onKeydown(event: KeyboardEvent, index: number): void {
-    if (event.key === 'Backspace' && !this.otp[index] && index > 0) {
-      (document.getElementById(`otp-${index - 1}`) as HTMLInputElement)?.focus();
+    if (event.key === 'Backspace') {
+      if (this.otp[index]) {
+        this.otp[index] = '';
+      } else if (index > 0) {
+        this.focusInput(index - 1);
+      }
     }
   }
 
-  get otpValue(): string  { return this.otp.join(''); }
-  get isComplete(): boolean { return this.otpValue.length === 6; }
+  onPaste(event: ClipboardEvent): void {
+    event.preventDefault();
+    const pasteData = event.clipboardData?.getData('text') || '';
+    this.fillOtp(pasteData);
+  }
+
+  fillOtp(value: string): void {
+    const digits = value.replace(/\D/g, '').slice(0, 6).split('');
+
+    this.otp = this.otp.map((_, i) => digits[i] || '');
+
+    setTimeout(() => {
+      this.focusInput(Math.min(digits.length, 5));
+    }, 0);
+  }
+
+  focusInput(index: number): void {
+    const el = document.getElementById(`otp-${index}`) as HTMLInputElement;
+    if (el) el.focus();
+  }
+
+  get otpValue(): string {
+    return this.otp.join('');
+  }
+
+  get isComplete(): boolean {
+    return this.otpValue.length === 6;
+  }
+
+  // ================= Verify =================
 
   verify(): void {
     if (!this.isComplete) return;
+
     this.isLoading = true;
 
     const body = { phone: this.phone, otp: this.otpValue };
 
-    // register → verifyAcc | forgot → verifyOtp
     const request$ = this.mode === 'register'
       ? this.Auth.verifyAcc(body)
       : this.Auth.verifyOtp(body);
@@ -70,9 +126,8 @@ export class VerifyAcc implements OnInit {
             text: 'تم تفعيل حسابك بنجاح',
             confirmButtonText: 'سجل الدخول'
           }).then(() => this.router.navigate(['/auth/login']));
-
         } else {
-          this.router.navigate(['/auth/reset-password'], {
+          this.router.navigate(['/auth/'], {
             state: { phone: this.phone, otp: this.otpValue }
           });
         }
@@ -88,23 +143,33 @@ export class VerifyAcc implements OnInit {
     });
   }
 
-  // ---- Resend ----
+  // ================= Resend =================
+
   resend(): void {
     this.isResending = true;
+
     this.Auth.sendOtp({ phone: this.phone }).subscribe({
       next: () => {
         this.isResending = false;
         this.otp = ['', '', '', '', '', ''];
+
         Swal.fire({
           icon: 'success',
           title: 'تم إرسال كود جديد',
           timer: 2000,
           showConfirmButton: false
         });
+
+        this.focusInput(0);
       },
       error: () => {
         this.isResending = false;
-        Swal.fire({ icon: 'error', title: 'حدث خطأ', text: 'حاول مرة تانية' });
+
+        Swal.fire({
+          icon: 'error',
+          title: 'حدث خطأ',
+          text: 'حاول مرة تانية'
+        });
       }
     });
   }

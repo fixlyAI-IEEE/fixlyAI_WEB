@@ -1,0 +1,33 @@
+<div class="chat-wrapper">
+
+    <div class="chat-header">
+        <button class="back-btn" routerLink="/home">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+        <div class="header-info">
+            <span class="header-name">Fixly Bot</span>
+            <span class="header-status">مش عيق، هنا للمساعدة 😄</span>
+        </div>
+        <img src="/images/AI_man.png" alt="Fixly Bot" class="header-avatar" />
+    </div>
+
+    <div class="messages-area">
+
+        <ng-container *ngFor="let msg of messages">
+            <app-chat-bubble [message]="msg" (buttonClicked)="onButtonClick($event)">
+            </app-chat-bubble>
+        </ng-container>
+
+        <div class="typing-indicator" *ngIf="isTyping">
+            <img src="/images/AI_man.png" alt="bot" class="bubble-avatar" />
+            <div class="typing-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <div #messagesEnd></div>
+    </div>
+
+    <app-chat-input (messageSent)="onSend($event)" />
+
+</div>

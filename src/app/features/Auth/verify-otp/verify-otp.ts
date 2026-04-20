@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Auth } from '../services/auth';
 import { VerifyOtpResponse } from '../../../core/models/model';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-verify-otp',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './verify-otp.html',
   styleUrl: './verify-otp.css',
 })
@@ -51,14 +54,14 @@ export class VerifyOtp implements OnInit {
     this.isLoading = true;
 
     this.Auth.verifyOtp({ phone: this.phone, otp: otpValue }).subscribe({
-      next: (res:VerifyOtpResponse) => {
+      next: () => {
         this.isLoading = false;
         sessionStorage.setItem('otp_verified', 'true');
         this.router.navigate(['/auth/reset-pass']);
       },
-      error: (res:VerifyOtpResponse) => {
+      error: (err:HttpErrorResponse) => {
         this.isLoading = false;
-        Swal.fire({ icon: 'error', title: 'كود خاطئ', text: res.message, confirmButtonText: 'حسناً' });
+        Swal.fire({ icon: 'error', title: 'كود خاطئ', text: err.error?.message, confirmButtonText: 'حسناً' });
       }
     });
   }

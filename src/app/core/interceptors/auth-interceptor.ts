@@ -25,7 +25,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
       if (err.status === 401) {
         auth.logout();
-        router.navigate(['/login']);
+        router.navigate(['/auth/login']);
       }
 
       return throwError(() => err);
