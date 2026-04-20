@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
-
-import { Router } from '@angular/router';
 import { Auth } from '../../Auth/services/auth';
-import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-hero-section',
+  standalone: true,
   imports: [RouterModule],
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.css',
 })
 export class HeroSection {
+
   stats = [
     { value: '98%', label: 'رضا العملاء' },
     { value: '+8K', label: 'طلب مكتمل' },
     { value: '+500', label: 'فني معتمد' },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: Auth) {}
 
   onRequestService() {
     const isLoggedIn = !!localStorage.getItem('token');
@@ -40,10 +40,12 @@ export class HeroSection {
       });
     } else {
       this.router.navigate(['/request-form']);
-  constructor(private router: Router, private auth: Auth) { }
+    }
+  }
+
   openChat() {
     if (this.auth.isLoggedIn()) {
-      swal.fire({
+      Swal.fire({
         title: 'أهلاً بيك 👋',
         text: 'أنا هنا للمساعدة 😄',
         icon: 'success',
@@ -53,7 +55,7 @@ export class HeroSection {
         this.router.navigate(['/chat']);
       });
     } else {
-      swal.fire({
+      Swal.fire({
         title: 'أهلاً بيك 👋',
         text: 'يجب تسجيل الدخول أولاً',
         icon: 'warning',
