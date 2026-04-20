@@ -39,19 +39,19 @@
       <div class="flex flex-col items-end gap-3">
         <h4 class="text-[16px] font-bold mb-2">روابط سريعة</h4>
         <span class="text-white/70 text-[14px] hover:text-white cursor-pointer transition">الخدمات</span>
-        <span class="text-white/70 text-[14px] hover:text-white cursor-pointer transition">كيف يعمل</span>
-        <span class="text-white/70 text-[14px] hover:text-white cursor-pointer transition">الفنيين</span>
-        <span class="text-white/70 text-[14px] hover:text-white cursor-pointer transition">آراء العملاء</span>
-        <span class="text-white/70 text-[14px] hover:text-white cursor-pointer transition">تواصل معنا</span>
+        <span class="text-white/70 text-[14px] hover:text-white cursor-pointer transition"(click)="scrollTo('how-it-works')">كيف يعمل</span>
+        <span class="text-white/70 text-[14px] hover:text-white cursor-pointer transition" (click)="scrollTo('workers')">الفنيين</span>
+        <span class="text-white/70 text-[14px] hover:text-white cursor-pointer transition"(click)="scrollTo('reviews')">آراء العملاء</span>
+        <span class="text-white/70 text-[14px] hover:text-white cursor-pointer transition" (click)="scrollTo('contact')">تواصل معنا</span>
       </div>
 
       <!-- تواصل معنا -->
     <div class="flex flex-col items-end gap-3 ">
   <h4 class="text-[16px] font-bold mb-2">تواصل معنا</h4>
 
-  <div class="flex flex-row-reverse items-center gap-3">
+  <div class="flex flex-row items-center gap-3 ">
     <div class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center flex-shrink-0">
-      <span class="material-symbols-outlined text-[var(--secondary)] text-[18px]">call</span>
+      <span class="material-symbols-outlined text-[var(--secondary)] text-[18px] ">call</span>
     </div>
     <div class="text-right">
       <p class="text-white/70 text-[13px]">اتصل بنا</p>
@@ -59,17 +59,17 @@
     </div>
   </div>
 
-  <div class="flex flex-row-reverse items-center gap-3">
+  <div class="flex flex-row items-center gap-3 ">
     <div class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center flex-shrink-0">
       <span class="material-symbols-outlined text-[var(--secondary)] text-[18px]">mail</span>
     </div>
-    <div class="text-right">
+    <div class="text-right ">
       <p class="text-white/70 text-[13px]">البريد الإلكتروني</p>
       <p class="text-white text-[14px] font-bold">fixly_ai&#64;gmail.com</p>
     </div>
   </div>
 
-  <div class="flex flex-row-reverse items-center gap-3">
+  <div class="flex flex-row items-center gap-3">
     <div class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center flex-shrink-0">
       <span class="material-symbols-outlined text-[var(--secondary)] text-[18px]">location_on</span>
     </div>

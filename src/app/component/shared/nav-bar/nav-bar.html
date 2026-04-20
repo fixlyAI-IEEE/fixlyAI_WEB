@@ -7,11 +7,11 @@
     <img src="/images/fixly_AI.svg" class="h-9 w-28 flex-shrink-0" />
 
     <ul class="hidden lg:flex items-center gap-8 whitespace-nowrap text-[15px] font-medium text-[var(--primary)]">
-      <li class="hover:text-[var(--secondary)] cursor-pointer" routerLink="/services">الخدمات</li>
-      <li class="hover:text-[var(--secondary)] cursor-pointer">كيف يعمل</li>
-      <li class="hover:text-[var(--secondary)] cursor-pointer">الفنيين</li>
-      <li class="hover:text-[var(--secondary)] cursor-pointer">آراء العملاء</li>
-      <li class="hover:text-[var(--secondary)] cursor-pointer">تواصل معنا</li>
+    <li class="hover:text-[var(--secondary)] cursor-pointer" routerLink="/services">الخدمات</li>
+<li class="hover:text-[var(--secondary)] cursor-pointer" (click)="scrollTo('how-it-works')">كيف يعمل</li>
+<li class="hover:text-[var(--secondary)] cursor-pointer" (click)="scrollTo('workers')">الفنيين</li>
+<li class="hover:text-[var(--secondary)] cursor-pointer" (click)="scrollTo('reviews')">آراء العملاء</li>
+<li class="hover:text-[var(--secondary)] cursor-pointer" (click)="scrollTo('contact')">تواصل معنا</li>
     </ul>
 
     <div class="flex items-center gap-3 flex-shrink-0">

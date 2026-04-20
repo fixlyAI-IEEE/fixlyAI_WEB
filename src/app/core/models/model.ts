@@ -233,3 +233,15 @@ export interface Offer {
 export interface OffersResponse {
   data: Offer[];
 }
+export interface RatingRequest {
+  rate: number;
+  comment: string;
+}
+
+export interface RatingResponse {
+  message: string;
+  data: {
+    rate: number;
+    comment: string;
+  };
+}

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ContactRequest, ContactResponse, OffersResponse, RequestServiceRequest, RequestServiceResponse } from '../models/model';
+import { ContactRequest, ContactResponse, OffersResponse, RatingRequest, RatingResponse, RequestServiceRequest, RequestServiceResponse } from '../models/model';
 import { Observable } from 'rxjs';
 import { apiEndpoints } from '../api-endpoints';
 
@@ -21,7 +21,7 @@ getOffers(requestId: number): Observable<OffersResponse> {
   return this.http.get<OffersResponse>(`${apiEndpoints.getOffers(requestId)}`);
 }
 
-// rateWorker(requestId: number, data: RatingRequest): Observable<RatingResponse> {
-//   return this.http.post<RatingResponse>(apiEndpoints.rateWorker(requestId), data);
-// }
+rateWorker(requestId: number, data: RatingRequest): Observable<RatingResponse> {
+  return this.http.post<RatingResponse>(apiEndpoints.rateWorker(requestId), data);
+}
 }

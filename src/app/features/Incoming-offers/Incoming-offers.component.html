@@ -1,45 +1,88 @@
 <app-nav-bar />
 
-<section class="max-w-4xl mx-auto px-4 py-10 mt-20">
+<section class="w-full max-w-2xl lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mt-20">
 
+  <!-- Header -->
   <div class="text-center mb-10">
-    <h1 class="text-[36px] font-extrabold text-[var(--secondary)]">العروض الواردة</h1>
-    <p class="text-[15px] text-[var(--text)] mt-2">كل ما تحتاجه في مكان واحد</p>
+    <h1 class="text-[28px] sm:text-[36px] font-extrabold text-[var(--secondary)]">
+      العروض الواردة
+    </h1>
+    <p class="text-[14px] sm:text-[15px] text-[var(--text)] mt-2">
+      كل ما تحتاجه في مكان واحد
+    </p>
   </div>
 
-  @if (isLoading) {
-    <div class="text-center text-[var(--text)]">جاري التحميل...</div>
+  <!-- حالة البحث -->
+  @if (status === 'waiting') {
+    <div class="text-center text-[var(--text)] py-16">
+      <span class="material-symbols-outlined text-[48px] text-[var(--secondary)] block mb-4">
+        manage_search
+      </span>
+      <p class="text-[16px]">جاري البحث عن فني مناسب لك...</p>
+    </div>
   }
 
-  <div class="flex flex-col gap-4">
-    @for (offer of offers; track offer.worker_id) {
-      <div class="bg-white rounded-2xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.07)]">
+  <!-- مفيش عروض -->
+  @if (status === 'no-offers') {
+    <div class="text-center text-red-500 py-16">
+      <span class="material-symbols-outlined text-[48px] block mb-4">
+        sentiment_dissatisfied
+      </span>
+      <p class="text-[16px]">لم يتم العثور على فني، تم إلغاء الطلب</p>
+    </div>
+  }
 
-        <div class="flex items-center justify-between mb-4">
+  <!-- فيه عروض -->
+  @if (status === 'has-offers') {
+    <div class="flex flex-col gap-4">
 
-          <p class="text-[var(--secondary)] font-bold text-[16px]">{{ offer.job_type }}</p>
+      @for (offer of offers; track offer.worker_id) {
+        <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.07)]">
 
-          <div class="flex items-center gap-3">
-            <div class="text-right">
-              <p class="text-[var(--primary)] font-bold text-[15px]">{{ offer.name }}</p>
-              <div class="flex items-center justify-end gap-1 mt-1">
-                <span class="text-[13px] text-[var(--text)]">{{ offer.rating }}</span>
-                <span class="text-yellow-400 text-[14px]">★</span>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+
+            <!-- نوع الخدمة -->
+            <p class="text-[var(--secondary)] font-bold text-[15px] sm:text-[16px] text-right sm:text-left">
+              {{ offer.job_type }}
+            </p>
+
+            <!-- الفني -->
+            <div class="flex items-center gap-3 justify-end">
+              <div class="text-right">
+                <p class="text-[var(--primary)] font-bold text-[14px] sm:text-[15px]">
+                  {{ offer.name }}
+                </p>
+                <div class="flex items-center justify-end gap-1 mt-1">
+                  <span class="text-[12px] sm:text-[13px] text-[var(--text)]">
+                    {{ offer.rating }}
+                  </span>
+                  <span class="text-yellow-400 text-[13px] sm:text-[14px]">★</span>
+                </div>
+              </div>
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#f0fdf4] flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-[var(--secondary)] text-[20px] sm:text-[24px]">
+                  person
+                </span>
               </div>
             </div>
-            <div class="w-12 h-12 rounded-full bg-[#f0fdf4] flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[var(--secondary)]">person</span>
-            </div>
+
           </div>
 
+          <button 
+            class="w-full bg-[var(--secondary)] hover:bg-[var(--hover)] text-white font-bold py-2.5 sm:py-3 rounded-xl transition text-[14px] sm:text-[15px]"
+          >
+            قبول الطلب
+          </button>
+
         </div>
+      }
 
-        <button class="w-full bg-[var(--secondary)] hover:bg-[var(--hover)] text-white font-bold py-3 rounded-xl transition">
-          قبول الطلب
-        </button>
-
-      </div>
-    }
-  </div>
+    </div>
+    <!-- <app-rating
+  [isOpen]="isRateOpen"
+  [requestId]="requestId"
+  (closed)="isRateOpen = false"
+/> -->
+  }
 
 </section>

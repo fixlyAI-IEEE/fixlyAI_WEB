@@ -19,4 +19,6 @@ export const apiEndpoints = {
     messagesContact: `${BASE_URL}/messages`,
     createRequest: `${BASE_URL}/requests`,
     getOffers: (requestId: number) => `${BASE_URL}/requests/${requestId}/offers`,
+
+      rateWorker: (requestId: number) => `${BASE_URL}/requests/${requestId}/rate`,
 };

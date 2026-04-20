@@ -1,5 +1,5 @@
-import { Component, HostListener, signal, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, HostListener, signal, OnInit, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,7 +13,7 @@ export class NavBar implements OnInit {
   isScrolled = signal(false);
   isLoggedIn = signal(false);
   userName = signal('');
-
+private router = inject(Router);
   ngOnInit() {
     const token = localStorage.getItem('token');
     const userRaw = localStorage.getItem('current_user');
@@ -39,4 +39,10 @@ export class NavBar implements OnInit {
   onScroll() {
     this.isScrolled.set(window.scrollY > 50);
   }
+  scrollTo(fragment: string) {
+  this.router.navigate(['/'], { fragment }).then(() => {
+    const el = document.getElementById(fragment);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+}
 }
