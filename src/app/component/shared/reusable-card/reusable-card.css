@@ -2,13 +2,30 @@
   position: relative;
   background: white;
   border-radius: 24px;
+}
 
-  /* 👇 ده السر */
-  -webkit-mask:
-    radial-gradient(circle at 0 0, transparent 55px, black 56px),
-    radial-gradient(circle at 0 70px, transparent 35px, black 36px),
-    linear-gradient(black, black);
 
-  -webkit-mask-composite: destination-over;
-  mask-composite: add;
+.card-with-notch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  background: #f0fdf4;
+  border-bottom-right-radius: 50px;
+  z-index: 1;
+}
+
+
+.card-with-notch::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 68px;
+  height: 68px;
+  background: #f0fdf4;
+  border-bottom-right-radius: 50px;
+  z-index: 2;
 }

@@ -5,12 +5,13 @@ import { NavBar } from "../../component/shared/nav-bar/nav-bar";
 import { ActivatedRoute } from '@angular/router';
 import { interval, Subscription, switchMap } from 'rxjs';
 import { RatingComponent } from "../../features/rating/rating.component";
+import { RequestFormComponent } from "../../component/shared/request-form/request-form.component";
 
 @Component({
   selector: 'app-Incoming-offers',
   templateUrl: './Incoming-offers.component.html',
   styleUrls: ['./Incoming-offers.component.css'],
-  imports: [NavBar, RatingComponent]
+  imports: [NavBar, RatingComponent, RequestFormComponent]
 })
 
 export class IncomingOffersComponent implements OnInit, OnDestroy {
@@ -24,6 +25,7 @@ export class IncomingOffersComponent implements OnInit, OnDestroy {
 
   private pollingSub!: Subscription;
   private timeoutId: any;
+
 
   ngOnInit() {
     const requestId = Number(this.route.snapshot.paramMap.get('id'));
@@ -62,4 +64,5 @@ export class IncomingOffersComponent implements OnInit, OnDestroy {
 //   // TODO: API call هنا
 //   this.isRateOpen = true;
 // }
+
 }

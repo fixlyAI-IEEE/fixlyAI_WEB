@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Service } from '../../../core/models/model';
 import { RequestFormComponent } from "../request-form/request-form.component";
 
-
 @Component({
   selector: 'app-reusable-card',
   imports: [RequestFormComponent],
