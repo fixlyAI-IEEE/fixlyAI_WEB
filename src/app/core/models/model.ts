@@ -245,3 +245,35 @@ export interface RatingResponse {
     comment: string;
   };
 }
+
+// Request Model
+export interface ConfirmWorkerRequest {
+  worker_id: number;
+}
+
+// Response Model
+export interface ConfirmWorkerResponse {
+  message: string;
+  data: {
+    id: number;
+    description: string;
+    city: string;
+    status: string;
+    job_type: {
+      id: number;
+      name: string;
+    };
+    accepted_worker: {
+      id: number;
+      name: string;
+      phone: string;
+      city: string;
+      areas: string;
+      is_available: boolean;
+      is_verified: boolean;
+      rating: number;
+      working_days: string[];
+    };
+    created_at: string;
+  };
+}
