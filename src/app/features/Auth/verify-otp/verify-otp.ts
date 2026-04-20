@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Auth } from '../services/auth';
 import { VerifyOtpResponse } from '../../../core/models/model';
 @Component({
   selector: 'app-verify-otp',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './verify-otp.html',
   styleUrl: './verify-otp.css',
 })

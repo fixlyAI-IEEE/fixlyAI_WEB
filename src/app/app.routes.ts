@@ -13,6 +13,18 @@ export const routes: Routes = [
       import('./features/Auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'chat',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./features/chat/chat-module').then(m => m.ChatModule)
+  },
+  {
+    path: 'dashboard',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./Worker/dashboard/dashboard').then(m => m.Dashboard)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

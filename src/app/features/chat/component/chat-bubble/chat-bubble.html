@@ -1,0 +1,23 @@
+<div class="bubble-row user-row" *ngIf="message.sender === 'user'">
+  <div class="bubble user-bubble">{{ message.text }}</div>
+  <img src="assets/images/user-placeholder.png" alt="user" class="bubble-avatar user-avatar"/>
+</div>
+
+<div class="bubble-row bot-row" *ngIf="message.sender === 'bot'">
+  <img src="/images/AI_man.png" alt="bot" class="bubble-avatar"/>
+  <div class="bot-content">
+    <span class="bot-name">Fixly Bot</span>
+    <div class="bubble bot-bubble">{{ message.text }}</div>
+
+    <!-- Suggested Buttons -->
+    <div class="suggested-buttons" *ngIf="message.suggested_buttons?.length">
+      <button
+        *ngFor="let btn of message.suggested_buttons"
+        class="suggested-btn"
+        (click)="buttonClicked.emit(btn)">
+        {{ btn.label }}
+      </button>
+    </div>
+
+  </div>
+</div>

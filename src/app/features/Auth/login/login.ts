@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Auth } from '../services/auth';
-import { loginresponse } from '../../../core/models/model';
+import { loginresponse, SendOtpResponse } from '../../../core/models/model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
+  standalone: true,
   styleUrl: './login.css',
-  imports: [CommonModule, FormsModule, RouterLink]
+  imports: [CommonModule, FormsModule, RouterLink, NgIf, ReactiveFormsModule]
 })
 export class Login {
   loginForm: FormGroup;
@@ -24,7 +26,7 @@ export class Login {
     private fb: FormBuilder,
     private router: Router,
     private auth: Auth,
-    
+
   ) {
     this.loginForm = this.fb.group({
       phone: ['', [Validators.required]],
@@ -51,16 +53,21 @@ export class Login {
 
     this.auth.login(formData).subscribe({
       next: (res: loginresponse) => {
-
         Swal.fire({
           title: 'أهلاً بيك 👋',
           text: 'تم تسجيل الدخول بنجاح، يلا نبدأ!',
           icon: 'success',
-          confirmButtonText: 'ابدأ 🚀',
+          confirmButtonText: 'ابدأ ',
           confirmButtonColor: 'var(--primary)'
-        }).then(() => {
-          this.router.navigate(['/landing']);
-        });
+        })
+          .then(() => {
+            const user = JSON.parse(sessionStorage.getItem('user') || '{}');
+            if (user.role === 'worker') {
+              this.router.navigate(['/dashboard']);
+            } else {
+              this.router.navigate(['/landing']);
+            }
+          });
 
       },
 
@@ -93,19 +100,19 @@ export class Login {
         Swal.showLoading();
       }
     });
-
-    // TODO: Implement actual API call
-    setTimeout(() => {
-      Swal.fire({
-        title: 'تم إرسال الرمز ✅',
-        text: 'تم إرسال رمز التحقق إلى جوالك، يرجى إدخاله في الصفحة التالية',
-        icon: 'success',
-        confirmButtonText: 'الانتقال لصفحة التحقق',
-        confirmButtonColor: 'var(--primary)'
-      }).then(() => {
-        // this.router.navigate(['/auth/verify'], { queryParams: { phone } });
-        console.log('Verification code sent to:', phone);
-      });
-    }, 1500);
+    this.auth.sendOtp({ phone }).subscribe({
+      next: (res: SendOtpResponse) => {
+        Swal.fire({
+          title: 'تم إرسال الرمز ✅',
+          text: 'تم إرسال رمز التحقق إلى جوالك، يرجى إدخاله في الصفحة التالية',
+          icon: 'success',
+          confirmButtonText: 'الانتقال لصفحة التحقق',
+          confirmButtonColor: 'var(--primary)'
+        }).then(() => {
+          this.router.navigate(['/auth/verify-acc'], { state: { phone } });
+          console.log('Verification code sent to:', phone);
+        });
+      }
+    });
   }
 }

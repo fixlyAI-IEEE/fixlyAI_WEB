@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Auth } from '../services/auth';
 import { ResetPasswordResponse } from '../../../core/models/model';
 @Component({
   selector: 'app-reset-pass',
-  imports: [RouterLink,FormsModule],
+  imports: [RouterLink, FormsModule, CommonModule],
   templateUrl: './reset-pass.html',
   styleUrl: './reset-pass.css',
 })
