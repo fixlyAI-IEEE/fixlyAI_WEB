@@ -8,8 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-verify-acc',
-  imports: [CommonModule,FormsModule],
-  standalone:true,
+  imports: [CommonModule, FormsModule],
+  standalone: true,
   templateUrl: './verify-acc.html',
   styleUrl: './verify-acc.css',
 })
@@ -26,7 +26,7 @@ export class VerifyAcc implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private Auth: Auth
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.phone = history.state?.phone ?? '';
@@ -39,8 +39,12 @@ export class VerifyAcc implements OnInit, AfterViewInit {
     setTimeout(() => this.focusInput(0), 0);
   }
 
-  // ================= OTP Logic =================
 
+  onInput(event: Event, index: number): void {
+    const input = event.target as HTMLInputElement;
+    const value = input.value.replace(/\D/g, '').slice(0, 1);
+
+    input.value = value;
 onInput(event: Event, index: number): void {
   const input = event.target as HTMLInputElement;
   const value = input.value.replace(/\D/g, '');
@@ -177,5 +181,9 @@ onInput(event: Event, index: number): void {
         });
       }
     });
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 }

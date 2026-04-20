@@ -62,7 +62,7 @@ export class Login {
           .then(() => {
             const user = JSON.parse(sessionStorage.getItem('user') || '{}');
             if (user.role === 'worker') {
-              this.router.navigate(['/dashboard']);
+              this.router.navigate(['/worker']);
             } else {
               this.router.navigate(['/landing']);
             }

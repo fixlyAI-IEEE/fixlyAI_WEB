@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-personal',
-  imports: [RouterLink,CommonModule],
+  imports: [RouterLink,CommonModule, ReactiveFormsModule],
   templateUrl: './personal.html',
   styleUrl: './personal.css',
 })
@@ -17,7 +17,7 @@ export class Personal {
   showPass        = false;
   showPassConfirm = false;
 
-  constructor(private router: Router,private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   isInvalid(key: string): boolean {
     const ctrl = this.form.get(key);
@@ -35,7 +35,7 @@ export class Personal {
   }
 
   goToBusiness(){
-    this.router.navigate(['/auth/register/tech/business']);
+    this.next.emit();
   }
 }
 
