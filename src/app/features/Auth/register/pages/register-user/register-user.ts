@@ -19,10 +19,10 @@ export class RegisterUser {
 
   isLocating = false;
   detectedCity = '';
-  
- activeTab: 'user' | 'tech' = 'user';
 
-    constructor(
+  activeTab: 'user' | 'tech' = 'user';
+
+  constructor(
     private fb: FormBuilder,
     private router: Router,
     private Auth: Auth
@@ -153,7 +153,9 @@ export class RegisterUser {
 
         localStorage.setItem('token', res.data.token);
 
-        this.router.navigate(['/landing']);
+        this.router.navigate(['/auth/verify-acc'], {
+          state: { phone: this.form.value.phone, mode: 'register' }
+        });
       },
       error: (err) => {
         console.error(err);

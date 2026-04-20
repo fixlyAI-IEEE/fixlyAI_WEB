@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-register-tabs',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './register-tabs.html',
   styleUrl: './register-tabs.css',
 })
@@ -13,8 +13,9 @@ export class RegisterTabs {
     this.router.navigate(['/auth/register/tech']);
   }
   goToUser() {
-    this.router.navigate(['/auth/register-user']);
+    this.router.navigate(['/auth/register/user']);
 
   }
+  
 
 }

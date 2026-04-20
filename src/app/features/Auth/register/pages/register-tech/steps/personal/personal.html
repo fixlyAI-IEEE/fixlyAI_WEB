@@ -56,14 +56,14 @@
             ✓ تم اختيار الصورة
         </p>
     </div>
-
-    <button type="button" class="btn-secondary mt-2" (click)="next.emit()">
+<!-- (click)="next.emit()" -->
+    <button type="button" class="btn-secondary mt-2" (onclick)="goToBusiness()">
         التالي
     </button>
 
     <p class="text-center text-sm mt-2">
         لديك حساب بالفعل؟
-        <a routerLink="/auth/login" style="color: var(--secondary)" class="font-bold">سجل الدخول</a>
+        <a [routerLink]="['/auth/login']"  style="color: var(--secondary)" class="font-bold">سجل الدخول</a>
     </p>
 
 </div>

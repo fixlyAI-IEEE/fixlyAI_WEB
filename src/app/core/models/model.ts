@@ -83,6 +83,25 @@ export interface RegisterAsWorkerResponse {
     token: string;
   };
 }
+export interface VerifyAccRequest {
+  phone: string;
+  otp: string;
+}
+export interface VerifyAccResponse {
+
+  "message": string,
+  "data": {
+    "id": number,
+    "name": string,
+    "phone": string,
+    "role": string,
+    "city": string,
+    "areas": string,
+    "profile_picture": null,
+    "is_verified": boolean,
+    "created_at": string
+  }
+}
 
 
 export interface SendOtpRequest {
@@ -112,6 +131,40 @@ export interface ResetPasswordResponse {
   message: string;
 }
 //---------------------------------------------------------
+
+//Ai_Chatbot
+export interface ChatRequest {
+  message: string;
+}
+export interface ChatResponse {
+
+  "message": string,
+  "suggested_buttons": [
+    {
+      "label": "Show available workers",
+      "action": "show_workers",
+      "job_type_id": number
+    },
+    {
+      "label": "Send a request",
+      "action": "send_request",
+      "job_type_id": number
+    },
+    {
+      "label": "Ask another question",
+      "action": "new_question"
+    }
+  ],
+  "recommended_job_type": {
+    "id": number,
+    "name": string
+  },
+  "recommended_workers": []
+}
+
+//---------------------------------------------------------
+
+
 export interface Service {
   id: number;
   name: string;

@@ -17,6 +17,11 @@ const routes: Routes = [
                     import('./register/register.module').then(m => m.RegisterModule)
             },
             {
+                path: 'verify-acc',
+                loadComponent: () =>
+                    import('./verify-acc/verify-acc').then(m => m.VerifyAcc)
+            },
+            {
                 path: 'forget-password',
                 loadComponent: () =>
                     import('./forget-password/forget-password').then(m => m.ForgetPassword)
@@ -26,6 +31,7 @@ const routes: Routes = [
                 loadComponent: () =>
                     import('./verify-otp/verify-otp').then(m => m.VerifyOtp)
             },
+
             {
                 path: 'reset-password',
                 loadComponent: () =>

@@ -1,0 +1,42 @@
+<div class="text-center mb-6">
+  <h1 class="mb-1 text-xl font-bold">تأكيد رقم هاتفك</h1>
+  <p class="text-gray-500">تم إرسال كود مكون من 6 أرقام على</p>
+  <p class="text-[var(--primary)] font-bold">{{ phone }}</p>
+</div>
+
+<div class="flex justify-center gap-3 mt-6">
+  <input
+    *ngFor="let digit of otp; let i = index"
+    [id]="'otp-' + i"
+    type="text"
+    inputmode="numeric"
+    maxlength="1"
+    [value]="digit"
+    (input)="onInput($event, i)"
+    (keydown)="onKeydown($event, i)"
+    class="w-12 h-12 text-center text-lg font-bold border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)] transition"
+  />
+</div>
+
+<button
+  class="w-full mt-6 bg-[var(--secondary)] text-white py-3 rounded-xl font-bold disabled:opacity-50"
+  [disabled]="!isComplete || isLoading"
+  (click)="verify()"
+>
+  <span *ngIf="!isLoading">تأكيد</span>
+  <span *ngIf="isLoading">
+    <i class="fas fa-spinner fa-spin ml-2"></i>
+    جاري التحقق...
+  </span>
+</button>
+
+<p class="text-center text-sm mt-4 text-gray-500">
+  لم تستلم الكود؟
+  <button
+    class="text-[var(--primary)] font-semibold ml-1 disabled:opacity-50"
+    [disabled]="isResending"
+    (click)="resend()"
+  >
+    {{ isResending ? 'جاري الإرسال...' : 'إعادة الإرسال' }}
+  </button>
+</p>

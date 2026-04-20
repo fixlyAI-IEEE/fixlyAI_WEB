@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { loginrequest, loginresponse, registerRequest, registerResponse, register_as_workerRequest, RegisterAsWorkerResponse, SendOtpRequest, VerifyOtpRequest, ResetPasswordRequest,ResetPasswordResponse, VerifyOtpResponse, SendOtpResponse } from '../../../core/models/model';
+import { loginrequest, loginresponse, registerRequest, registerResponse, register_as_workerRequest, RegisterAsWorkerResponse, SendOtpRequest, VerifyOtpRequest, ResetPasswordRequest,ResetPasswordResponse, VerifyOtpResponse, SendOtpResponse, VerifyAccRequest, VerifyAccResponse } from '../../../core/models/model';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
@@ -37,6 +37,10 @@ export class Auth {
 
   registerWorker(data: register_as_workerRequest): Observable<RegisterAsWorkerResponse> {
     return this.http.post<RegisterAsWorkerResponse>(apiEndpoints.register_as_worker, data);
+  }
+
+  verifyAcc(body: VerifyAccRequest): Observable<VerifyAccResponse> {
+    return this.http.post<VerifyAccResponse>(apiEndpoints.verify_acc, body);
   }
 
    sendOtp(body: SendOtpRequest): Observable<SendOtpResponse> {

@@ -15,37 +15,31 @@
 }
 
 .step-circle {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #e8f5ee;
-    color: var(--text);
-    transition: background 0.3s, color 0.3s;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f5ee;
+  transition: background 0.3s;
 
-    svg {
-        color: var(--text);
-        transition: color 0.3s;
-    }
+  svg {
+    stroke: var(--text);  
+    transition: stroke 0.3s;
+  }
 
-    &.step-active {
-        background: var(--secondary);
+  &.step-active {
+    background: var(--secondary);
+    svg { stroke:white; }  
+  }
 
-        svg {
-            color: white;
-        }
-    }
-
-    &.step-done {
-        background: var(--primary);
-
-        svg {
-            color: white;
-        }
-    }
+  &.step-done {
+    background: var(--primary);
+    svg { stroke: white; }  
+  }
 }
+
 
 .step-label {
     font-size: 12px;

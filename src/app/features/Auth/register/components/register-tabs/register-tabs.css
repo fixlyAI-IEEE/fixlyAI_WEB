@@ -1,8 +1,8 @@
 .tab-btn {
-  color: var(--text);
-  
-  &.tab-active {
-    background: var(--secondary);
-    color: white;
-  }
+  color: #666;
+}
+
+.tab-active {
+  background-color: var(--secondary);
+  color: white;
 }

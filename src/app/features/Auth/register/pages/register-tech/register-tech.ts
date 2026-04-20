@@ -3,16 +3,14 @@ import Swal from 'sweetalert2';
 import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
 import { register_as_workerRequest, RegisterAsWorkerResponse } from '../../../../../core/models/model';
-import { FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { StepIndicator } from "../../components/step-indicator/step-indicator";
 import { Personal } from "./steps/personal/personal";
 import { Business } from "./steps/business/business";
 @Component({
   selector: 'app-register-tech',
-  imports: [StepIndicator, Personal, Business],
+  imports: [CommonModule, ReactiveFormsModule, StepIndicator, Personal, Business],
   templateUrl: './register-tech.html',
   styleUrl: './register-tech.css',
 })
