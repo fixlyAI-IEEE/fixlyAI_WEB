@@ -1,19 +1,33 @@
-<div class="input-wrapper">
+<div class="input-bar">
 
-  <button class="attach-btn">
-    <i class="fas fa-plus"></i>
+  <button class="attach-btn" type="button" aria-label="إرفاق">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
   </button>
 
-  <input
-    type="text"
-    [(ngModel)]="message"
-    (keydown)="onKeydown($event)"
-    placeholder="|"
+  <textarea
+    #inputRef
+    [(ngModel)]="text"
+    (keydown.enter)="onEnter($event)"
+    (input)="autoResize()"
+    placeholder="اكتب مشكلتك هنا..."
+    rows="1"
     class="chat-input"
-  />
+    dir="auto"
+  ></textarea>
 
-  <button class="send-btn" (click)="send()" [disabled]="!message.trim()">
-    <i class="fas fa-paper-plane"></i>
+  <button
+    class="send-btn"
+    type="button"
+    [disabled]="!text.trim()"
+    (click)="send()"
+    aria-label="إرسال"
+  >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M2 12L22 2L14 22L11 13L2 12Z"/>
+    </svg>
   </button>
 
 </div>

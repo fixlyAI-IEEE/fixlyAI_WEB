@@ -45,14 +45,33 @@ export class VerifyAcc implements OnInit, AfterViewInit {
     const value = input.value.replace(/\D/g, '').slice(0, 1);
 
     input.value = value;
+onInput(event: Event, index: number): void {
+  const input = event.target as HTMLInputElement;
+  const value = input.value.replace(/\D/g, '');
 
-    this.otp[index] = value;
-
-    if (value && index < 5) {
-      this.focusInput(index + 1);
-    }
+  // Handle paste or multiple chars
+  if (value.length > 1) {
+    input.value = ''; // clear before fill
+    this.fillOtp(value);
+    return;
   }
 
+  // Always keep only the LAST typed digit (not old+new)
+  const digit = value.slice(-1);
+  this.otp[index] = digit;
+
+  // Force the DOM input to show only 1 character
+  input.value = digit;
+
+  if (digit && index < 5) {
+    this.focusInput(index + 1);
+  }
+
+  // Delay auto-verify so DOM settles first
+  if (this.otpValue.length === 6) {
+    setTimeout(() => this.verify(), 100);
+  }
+}
   onKeydown(event: KeyboardEvent, index: number): void {
     if (event.key === 'Backspace') {
       if (this.otp[index]) {

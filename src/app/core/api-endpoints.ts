@@ -19,5 +19,12 @@ export const apiEndpoints = {
     //Worker
     worker_offer: `${BASE_URL}/worker/requests/{request_id}/offer`,
     worker_requests: `${BASE_URL}/worker/requests`,
+      // Services----------------------
+    messagesContact: `${BASE_URL}/messages`,
+    createRequest: `${BASE_URL}/requests`,
+    getOffers: (requestId: number) => `${BASE_URL}/requests/${requestId}/offers`,
+    confirmWorker: (requestId: number) => `${BASE_URL}/requests/${requestId}/confirm`,
+
+      rateWorker: (requestId: number) => `${BASE_URL}/requests/${requestId}/rate`,
 };
 

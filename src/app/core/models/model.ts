@@ -196,3 +196,93 @@ export interface Review {
   rating: number;
 }
 
+export interface ContactResponse {
+  message: string;
+  data: {
+    id: number;
+    name: string;
+    phone: string;
+    message: string;
+    created_at: string;
+    updated_at: string;
+  };
+}
+export interface ContactRequest {
+  name: string;
+  phone: string;
+  message: string;
+}
+export interface RequestServiceRequest {
+  job_type_id: number;
+  description: string;
+  city: string;
+}
+
+export interface RequestServiceResponse {
+  message: string;
+  data: {
+    id: number;
+    description: string;
+    city: string;
+    status: string;
+    job_type: {
+      id: number;
+      name: string;
+    };
+    created_at: string;
+  };
+}
+export interface Offer {
+  worker_id: number;
+  name: string;
+  rating: number;
+  job_type: string;
+}
+
+export interface OffersResponse {
+  data: Offer[];
+}
+export interface RatingRequest {
+  rate: number;
+  comment: string;
+}
+
+export interface RatingResponse {
+  message: string;
+  data: {
+    rate: number;
+    comment: string;
+  };
+}
+
+// Request Model
+export interface ConfirmWorkerRequest {
+  worker_id: number;
+}
+
+// Response Model
+export interface ConfirmWorkerResponse {
+  message: string;
+  data: {
+    id: number;
+    description: string;
+    city: string;
+    status: string;
+    job_type: {
+      id: number;
+      name: string;
+    };
+    accepted_worker: {
+      id: number;
+      name: string;
+      phone: string;
+      city: string;
+      areas: string;
+      is_available: boolean;
+      is_verified: boolean;
+      rating: number;
+      working_days: string[];
+    };
+    created_at: string;
+  };
+}

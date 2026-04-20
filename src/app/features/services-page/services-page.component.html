@@ -1,0 +1,53 @@
+<app-nav-bar />
+
+<section class="max-w-8xl mx-auto px-6 mr-10">
+
+  <!-- Hero Search Section -->
+  <div class="bg-white py-20 text-center px-8 mt-20">
+    <h1 class="text-[34px] md:text-[42px] font-extrabold text-[var(--primary)] leading-snug mb-2 text-center">
+      كيف يمكننا
+      <span class="text-[var(--secondary)]">مساعدتك اليوم؟</span>
+    </h1>
+    <p class="text-[17px] text-[var(--text)] mb-12 text-center">
+      اوصف مشكلتك أو ابحث عن الخدمة التي تحتاجها
+    </p>
+
+    <div class="flex flex-col sm:flex-row-reverse items-center gap-3 w-full max-w-[1200px] mx-auto">
+
+      <button class="flex-shrink-0 bg-[var(--secondary)] hover:bg-[var(--hover)] text-white px-10 py-2 rounded-full font-bold flex items-center gap-2 transition whitespace-nowrap">
+        اسأل Fixly Bot
+        <span class="material-symbols-outlined text-[18px]">smart_toy</span>
+      </button>
+
+      <div class="flex-1 w-full relative">
+        <input
+          type="text"
+          placeholder="ابحث عن خدمة أو فني"
+          class="w-full bg-white border border-gray-200 rounded-full px-6 py-2 pr-12 text-right text-[15px] outline-none focus:border-[var(--secondary)] transition shadow-sm"
+        />
+        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">search</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bg-white py-3">
+    <div class="container">
+
+      <div class="flex items-center justify-start mb-10">
+        <div class="text-right">
+          <h2 class="text-[36px] font-extrabold text-[var(--secondary)]">الخدمات</h2>
+          <p class="text-[15px] text-[var(--text)]">كل ما تحتاجه في مكان واحد</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        @for (service of services; track service.id) {
+          <app-reusable-card [service]="service" />
+        }
+      </div>
+
+    </div>
+  </div>
+
+</section>
