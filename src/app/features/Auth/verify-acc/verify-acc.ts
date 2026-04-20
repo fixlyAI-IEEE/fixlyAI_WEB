@@ -40,11 +40,7 @@ export class VerifyAcc implements OnInit, AfterViewInit {
   }
 
 
-  onInput(event: Event, index: number): void {
-    const input = event.target as HTMLInputElement;
-    const value = input.value.replace(/\D/g, '').slice(0, 1);
-
-    input.value = value;
+ 
 onInput(event: Event, index: number): void {
   const input = event.target as HTMLInputElement;
   const value = input.value.replace(/\D/g, '');
