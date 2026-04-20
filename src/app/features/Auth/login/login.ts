@@ -18,8 +18,6 @@ import { NgIf } from '@angular/common';
 export class Login {
   loginForm: FormGroup;
   isLoading = false;
-  phone: string = '';
-  password: string = '';
   showPassword: boolean = false;
 
   constructor(

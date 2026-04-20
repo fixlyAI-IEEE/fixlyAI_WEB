@@ -6,13 +6,13 @@
 
   <input
     type="text"
-    [(ngModel)]="text"
+    [(ngModel)]="message"
     (keydown)="onKeydown($event)"
     placeholder="|"
     class="chat-input"
   />
 
-  <button class="send-btn" (click)="send()" [disabled]="!text.trim()">
+  <button class="send-btn" (click)="send()" [disabled]="!message.trim()">
     <i class="fas fa-paper-plane"></i>
   </button>
 
