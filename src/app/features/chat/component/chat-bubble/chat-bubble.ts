@@ -9,6 +9,14 @@ import { ChatMessage, SuggestedButton } from '../../models/chat.models';
   styleUrl: './chat-bubble.css',
 })
 export class ChatBubble {
- @Input()  message!: ChatMessage;
+  @Input() message!: ChatMessage;
   @Output() buttonClicked = new EventEmitter<SuggestedButton>();
+  getButtonLabel(action: string, label: string): string {
+    const map: Record<string, string> = {
+      'show_workers': 'عرض الفنيين المتاحين',
+      'send_request': 'إرسال طلب',
+      'new_question': 'سؤال جديد',
+    };
+    return map[action] ?? label;
+  }
 }

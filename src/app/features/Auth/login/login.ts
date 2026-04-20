@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
@@ -50,7 +51,7 @@ export class Login {
     });
 
     this.auth.login(formData).subscribe({
-      next: (res: loginresponse) => {
+      next: () => {
         Swal.fire({
           title: 'أهلاً بيك 👋',
           text: 'تم تسجيل الدخول بنجاح، يلا نبدأ!',
@@ -69,7 +70,7 @@ export class Login {
 
       },
 
-      error: (err) => {
+      error: (err: HttpErrorResponse) => {
         Swal.fire({
           title: 'حصل مشكلة 😕',
           text: err.error?.message || 'تأكد من البيانات وحاول تاني',

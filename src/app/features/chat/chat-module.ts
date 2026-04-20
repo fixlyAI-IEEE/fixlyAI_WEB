@@ -11,7 +11,7 @@ import { ChatRoutingModule } from './chat-routing.module';
   declarations: [
   ],
   imports: [
-    FormsModule,
+  FormsModule,
     CommonModule,
     ChatRoutingModule,
     ChatInput,

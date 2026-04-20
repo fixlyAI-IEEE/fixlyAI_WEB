@@ -15,32 +15,27 @@ export class HeroSection {
     { value: '+500', label: 'فني معتمد' },
   ];
   constructor(private router: Router, private auth: Auth) { }
-  // openChat() {
-  //   if(this.auth.isLoggedIn()){
-  //     swal.fire({
-  //       title: 'أهلاً بيك 👋',
-  //       text: 'أنا هنا للمساعدة 😄',
-  //       icon: 'success',
-  //       confirmButtonText: 'ابدأ المحادثة',
-  //       confirmButtonColor: 'var(--primary)'
-  //     }).then(() => {
-  //       this.router.navigate(['/chat']);
-  //     });
-  //   }else{
-  //     swal.fire({
-  //       title: 'أهلاً بيك 👋',
-  //       text: 'يجب تسجيل الدخول أولاً',
-  //       icon: 'warning',
-  //       confirmButtonText: 'تسجيل الدخول',
-  //       confirmButtonColor: 'var(--primary)'
-  //     }).then(() => {
-  //       this.router.navigate(['/auth/login']);
-  //     });
-  //   }
-  // }
-
-
-  openChat(){
-    this.router.navigate(['/chat']);
+  openChat() {
+    if (this.auth.isLoggedIn()) {
+      swal.fire({
+        title: 'أهلاً بيك 👋',
+        text: 'أنا هنا للمساعدة 😄',
+        icon: 'success',
+        confirmButtonText: 'ابدأ المحادثة',
+        confirmButtonColor: 'var(--primary)'
+      }).then(() => {
+        this.router.navigate(['/chat']);
+      });
+    } else {
+      swal.fire({
+        title: 'أهلاً بيك 👋',
+        text: 'يجب تسجيل الدخول أولاً',
+        icon: 'warning',
+        confirmButtonText: 'تسجيل الدخول',
+        confirmButtonColor: 'var(--primary)'
+      }).then(() => {
+        this.router.navigate(['/auth/login']);
+      });
+    }
   }
 }

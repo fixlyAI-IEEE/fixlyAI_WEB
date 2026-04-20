@@ -11,9 +11,11 @@
     type="text"
     inputmode="numeric"
     maxlength="1"
+    autocomplete="one-time-code"
     [value]="digit"
     (input)="onInput($event, i)"
     (keydown)="onKeydown($event, i)"
+    (paste)="onPaste($event)"
     class="w-12 h-12 text-center text-lg font-bold border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)] transition"
   />
 </div>
