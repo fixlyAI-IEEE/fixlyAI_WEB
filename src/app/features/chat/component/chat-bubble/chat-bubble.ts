@@ -1,22 +1,35 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ChatMessage, SuggestedButton } from '../../models/chat.models';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { CommonModule, DatePipe }                          from '@angular/common';
+import { DomSanitizer, SafeHtml }                         from '@angular/platform-browser';
+import { ChatMessage, SuggestedButton }                   from '../../models/chat.models';
 
 @Component({
-  selector: 'app-chat-bubble',
-  imports: [CommonModule],
+  selector   : 'app-chat-bubble',
+  standalone : true,
+  imports    : [CommonModule, DatePipe],
   templateUrl: './chat-bubble.html',
-  styleUrl: './chat-bubble.css',
+  styleUrl   : './chat-bubble.css',
 })
-export class ChatBubble {
-  @Input() message!: ChatMessage;
+export class ChatBubble implements OnInit {
+  @Input()  message!: ChatMessage;
   @Output() buttonClicked = new EventEmitter<SuggestedButton>();
-  getButtonLabel(action: string, label: string): string {
-    const map: Record<string, string> = {
-      'show_workers': 'عرض الفنيين المتاحين',
-      'send_request': 'إرسال طلب',
-      'new_question': 'سؤال جديد',
-    };
-    return map[action] ?? label;
+
+  formattedText: SafeHtml = '';
+
+  constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit(): void {
+    this.formattedText = this.sanitizer.bypassSecurityTrustHtml(
+      this.parseMarkdown(this.message.text)
+    );
+  }
+
+  private parseMarkdown(text: string): string {
+    return text
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,     '<em>$1</em>')
+      .replace(/\n/g,             '<br/>')
+      .replace(/^\d+\.\s+(.+)/gm,'<li>$1</li>')
+      .replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>');
   }
 }

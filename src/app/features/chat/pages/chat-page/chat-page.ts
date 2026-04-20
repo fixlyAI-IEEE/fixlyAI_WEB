@@ -63,10 +63,57 @@ export class ChatPage {
     });
   }
 
-  onButtonClick(btn: SuggestedButton): void {
-    this.onSend(btn.label);
-  }
+ onButtonClick(btn: SuggestedButton): void {
+  switch (btn.action) {
 
+    case 'quick_message':
+      // Send the predefined message directly
+      this.onSend(btn.message ?? btn.label);
+      break;
+
+    case 'new_question':
+      // Just focus the input, let user type
+      break;
+
+    case 'show_workers':
+      // Fetch workers and show them as a bot message
+      if (btn.job_type_id) {
+        this.isTyping = true;
+        this.Chat.getWorkersByJobType(btn.job_type_id).subscribe({
+          next: (res) => {
+            this.isTyping = false;
+            const workerList = res.data.length
+              ? res.data.map(w =>
+                  `• ${w.name} — تقييم: ${w.rating ?? 'غير متاح'} — ${w.city ?? ''}`
+                ).join('\n')
+              : 'لا يوجد عمال متاحين الآن.';
+
+            this.messages.push({
+              sender   : 'bot',
+              text     : `العمال المتاحين:\n${workerList}`,
+              timestamp: new Date()
+            });
+            this.scrollToBottom();
+          },
+          error: () => {
+            this.isTyping = false;
+            this.messages.push({
+              sender   : 'bot',
+              text     : 'تعذر تحميل العمال، حاول مرة تانية.',
+              timestamp: new Date()
+            });
+            this.scrollToBottom();
+          }
+        });
+      }
+      break;
+
+    case 'send_request':
+      // Navigate to the create request page with job_type_id
+      // this.router.navigate(['/requests/new'], { queryParams: { job_type_id: btn.job_type_id } });
+      break;
+  }
+}
   private scrollToBottom(): void {
     setTimeout(() => {
       this.messagesEnd?.nativeElement?.scrollIntoView({ behavior: 'smooth' });
